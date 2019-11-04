@@ -5,9 +5,17 @@ namespace Eflatun.EventBus.Sample
 {
     public class ListenerB : MonoBehaviour, IEventListener<EventB>
     {
-        public void Awake()
+        private EventBus<EventB> _eventBus;
+
+        [Inject]
+        public void Init(EventBus<EventB> eventBus)
         {
-            EventBus<EventB>.Listen(this);
+            _eventBus = eventBus;
+        }
+
+        public void Start()
+        {
+            _eventBus.Listen(this);
         }
 
         public void OnEvent(EventB @event)

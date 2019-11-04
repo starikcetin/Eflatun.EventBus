@@ -1,14 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
     public class ListenerA : MonoBehaviour, IEventListener<EventA>
     {
-        public void Awake()
+        private EventBus<EventA> _eventBus;
+
+        [Inject]
+        public void Init(EventBus<EventA> eventBus)
         {
-            EventBus<EventA>.Listen(this);
+            _eventBus = eventBus;
+        }
+
+        public void Start()
+        {
+            _eventBus.Listen(this);
         }
 
         public void OnEvent(EventA @event)
