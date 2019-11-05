@@ -10,7 +10,11 @@ This library offers a more flexible solution. It implements an event bus, that a
 
 This repository is a UPM package.
 
-1. Get this: https://github.com/mob-sakai/UpmGitExtension
+1. Get these: 
+
+    1. https://github.com/mob-sakai/UpmGitExtension
+    
+    2. https://github.com/mob-sakai/GitDependencyResolverForUnity
 
 2. Install this repo from Unity Package Manager window, inside Unity *(follow the instructions on the link above if this is your first time using UPM for git repositories)*.
 
@@ -29,6 +33,8 @@ This repository is a UPM package.
 If the provided installer doesn't satisfy your needs, you can always install it on your own, wherever you want. Take a look at the provided installer to get an idea how to do it.
 
 #### Without Extenject/Zenject
+
+**NOTE**: Currently this library lists Extenject as a dependency. So even if you don't use it, you are getting it. Because I am too lazy to maintain two separate branches of the same library.
 
 Even though I ***STRONGLY*** recommend you use Extenject, you can still use this library without it.
 
