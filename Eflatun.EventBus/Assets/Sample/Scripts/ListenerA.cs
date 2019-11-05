@@ -21,6 +21,8 @@ namespace Eflatun.EventBus.Sample
 
         public void OnEvent(object sender, EventA @event)
         {
+            var args = @event.Arguments;
+            var message = args.Message;
             Debug.Log($"{nameof(ListenerA)} on {gameObject.name} received {@event} from {sender}");
         }
     }

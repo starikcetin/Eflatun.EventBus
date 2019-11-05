@@ -2,7 +2,7 @@
 
 namespace Eflatun.EventBus.Sample
 {
-    public class EventE : IEvent
+    public struct EventE : IEvent
     {
     }
 }

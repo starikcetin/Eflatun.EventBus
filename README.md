@@ -16,7 +16,7 @@ This repository is a UPM package.
     
     2. https://github.com/mob-sakai/GitDependencyResolverForUnity
 
-2. Install this repo from Unity Package Manager window, inside Unity *(follow the instructions on the link above if this is your first time using UPM for git repositories)*.
+2. Install this repo from Unity Package Manager window, inside Unity *(follow the instructions on the first link above if this is your first time using UPM for Git repositories)*.
 
 ## Usage
 
@@ -24,13 +24,13 @@ This repository is a UPM package.
 
 #### With Extenject/Zenject
 
- I already provided you with a premade installer that installs the EventBus as a singleton, so you can just register it on your context. You can find it at the root of the package folder. 
+ I already provided you with a premade installer that installs the `EventBus<>` as a singleton, so you can just register it on your context. You can find it at the root of the package folder. 
 
-* Find it here in Unity Editor: (Projet Panel → Packages → Eflatun.EventBus → `EflatunEventBusInstaller.cs`)
+* Find it here in Unity Editor: `Projet Panel → Packages → Eflatun.EventBus → EflatunEventBusInstaller.cs`
 
 * It is a `MonoInstaller`.
 
-If the provided installer doesn't satisfy your needs, you can always install it on your own, wherever you want. Take a look at the provided installer to get an idea how to do it.
+If the provided installer doesn't satisfy your needs, you can always install it on your own, wherever you want. Take a look at the provided installer to get an idea on how to do it.
 
 #### Without Extenject/Zenject
 
@@ -42,22 +42,27 @@ You somehow need to make the EventBus class available to the rest of your code.
 
 *If I were you, I would wrap it around with a singleton generic class and use the singleton everywhere for convinience.*
 
-### Declaring Events
+### Declaring Events with Arguments
 
 ```cs
-using Eflatun.EventBus;
+using Eflatun.EventBus.interfaces;
 
-
-public class EventA : Event<EventA>
+// This struct will be our event itself.
+// Events must derive from IEvent<> interface. Generic argument is the Arguments struct this event takes.
+public struct EventA : IEvent<EventA.Args>
 {
+    // This is the arguments we pass along with our event instance.
+    // This property is required by IEvent<> interface.
+    public Args Arguments { get; }
 
-    public EventA(IEventEmitter<EventA> sender, Args args) : base(sender, args)
+    // This is our constructor. We want the emitter to give us an instance of EventA.Args while creating the event.
+    public EventA(Args arguments)
     {
+        Arguments = arguments;
     }
 
-    // This class is where we will pass data along with our event.
-    // This class derives from EventArguments<>. This is a must in order to use it in the Event's constructor.
-    public class Args : EventArguments<EventA>
+    // This struct will hold our arguments.
+    public struct Args : IEventArguments
     {
         public string Message { get; }
 
@@ -67,67 +72,29 @@ public class EventA : Event<EventA>
         }
     }
 }
-
-
-
-using Eflatun.EventBus.interfaces;
-
-namespace Eflatun.EventBus.Sample
-{
-
-	// This struct will be our event itself.
-	// Events must derive from IEvent<> interface. Generic argument is the Arguments struct this event takes.
-    public struct EventA : IEvent<EventA.Args>
-    {
-		// This is the arguments we pass along with our event instance.
-		// This property is required by IEvent<> interface.
-        public Args Arguments { get; }
-
-		// This is our constructor. We want the emitter to give us an instance of 
-		// EventA.Args while creating the event.
-		// Please note that this is only necessary if you want to pass arguments with
-		// your event. Otherwise you may omit the constructor.
-        public EventA(Args arguments)
-        {
-            Arguments = arguments;
-        }
-
-		// This struct will hold our arguments.
-        public struct Args : IEventArguments
-        {
-            public string Message { get; }
-
-            public Args(string message)
-            {
-                Message = message;
-            }
-        }
-    }
-}
-
-
-
 ```
 
-**Note:** You don't have to have an Arguments implementation. If you omit it, that means your event won't take any arguments. You EventA class constructor will look like this then:
+### Declaring Events without Arguments
 
 ```cs
-public EventA(IEventEmitter<EventA> sender, EventArgs<EventA> args) : base(sender, args)
+using Eflatun.EventBus.interfaces;
+
+public struct EventE : IEvent
 {
 }
 ```
 
-Since you EventArgs<> is abstract, it is not constructable. Therefore every emitter must pass in 'null' instead of the arguments class.
+Yep. It is really that simple.
+
     
 ### Emitting Events
 
 ```cs
+using System.Collections;
 using UnityEngine;
 using Zenject;
-using Eflatun.EventBus;
 
-// Emitter classes must implement IEventEmitter<> interface.
-public class EmitterA : MonoBehaviour, IEventEmitter<EventA>
+public class EmitterA : MonoBehaviour
 {
     // Get our event bus  from Extenject.
     private EventBus<EventA> _eventBus;
@@ -137,31 +104,30 @@ public class EmitterA : MonoBehaviour, IEventEmitter<EventA>
     {
         _eventBus = eventBus;
     }
-    
-    // Wrapping event emitting inside a method is an arbitrary decision, you don't have to do it.
-    public void EmitEventA(string message)
-    {       
-        // Prepare the event arguments.
-        // You don't have to have arguments for your event. Then you would skip 
-        // creating an args class and pass in 'null' for the second argument 
-        // while constructing your event.
-        var args = new EventA.Args(message);
+
+    // Let's emit our event as soon as our game starts.
+    public IEnumerator Start()
+    {
+        // Prepare the arguments.
+        var newArgs = new EventA.Args($"sent from {nameof(EmitterA)}");
         
-        // Create our event.
-        var evnt = new EventA(this, args);
+        // Create the event.
+        var newEvent = new EventA(newArgs);
         
         // Emit the event we just created.
-        _eventBus.Emit(evnt);
+        _eventBus.Emit(this, newEvent);
     }
 }
 ```
 
+Emitters can be anything you want, they don't have to be a `MonoBehaviour`.
+
 ### Listening for Events
 
 ```cs
+using Eflatun.EventBus.interfaces;
 using UnityEngine;
 using Zenject;
-using Eflatun.EventBus;
 
 // Listener classes must implement IEventListener<> interface.
 public class ListenerA : MonoBehaviour, IEventListener<EventA>
@@ -175,7 +141,7 @@ public class ListenerA : MonoBehaviour, IEventListener<EventA>
         _eventBus = eventBus;
     }
 
-    public void Start()
+    public void Awake()
     {
         // Let event bus know we want to listen for the event. 
         // Pass in the listener class as an argument.
@@ -184,26 +150,26 @@ public class ListenerA : MonoBehaviour, IEventListener<EventA>
     }
 
     // This will be our event handler. It is required by IEventListener<>. 
-    // We get the event object as our parameter.
-    public void OnEvent(EventA evnt)
+    // We get the sender and the event as our parameters.
+    public void OnEvent(object sender, EventA @event)
     {
-        // The object that emitted the event.
-        IEventEmitter<EventA> sender = evnt.Sender;
-        
         // Arguments of the event.
-        EventA.Args args = evnt.Arguments;
-        
-        // A property in the event arguments.
+        var args = @event.Arguments;
         var message = args.Message;
+        
+        Debug.Log($"{nameof(ListenerA)} on {gameObject.name} received {@event} from {sender}");
     }
 }
 ```
+
+Just like emitters, listeners can also be anything you want, they don't have to be a `MonoBehaviour`.
 
 ## Caveats
 
 * If you emit events in Awake or Start, Listeners might not be able to catch them. They also might. So I suggest registering listeners in Awake and emitting in Start, to make sure all listeners receive the event correctly.
 
-* GC allocations. This is fixable by using structs instead of classes for Events. I will work on it.
+* ~GC allocations. This is fixable by using structs instead of classes for Events. I will work on it.~ 
+    * This is fixed in `0.1.0`. Now you can use structs for your events and arguments, this means absolutely 0 GC allocations! Hooray!
 
 
 ## License
