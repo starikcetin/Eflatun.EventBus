@@ -1,5 +1,5 @@
 # Eflatun.EventBus
-Generic EventBus for Unity with Extenject.
+Generic event bus for Unity with Extenject.
 
 ## Purpose
 Extenject's signals are great, but at the end you end up converting your installers into god classes that wire up emitters and listeners together. I did not like this. Besides, I really don't want to write code just to wire together emitters and listeners.
