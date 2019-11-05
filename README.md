@@ -47,13 +47,10 @@ You somehow need to make the EventBus class available to the rest of your code.
 ```cs
 using Eflatun.EventBus;
 
-// This class will be our event itself.
-// Events must derive from Event<> class. Generic argument is the class itself.
+
 public class EventA : Event<EventA>
 {
-    // First parameter will accept a IEventEmitter<>. This is the *thing* that raised the event, whatever it is.
-    // Second parameter accepts an EventArguments<>, or in this case, a class that derives from it.
-    // Then we simply pass these to the base class construcor with base(sender, args). Base class handles everything for us.
+
     public EventA(IEventEmitter<EventA> sender, Args args) : base(sender, args)
     {
     }
@@ -70,6 +67,46 @@ public class EventA : Event<EventA>
         }
     }
 }
+
+
+
+using Eflatun.EventBus.interfaces;
+
+namespace Eflatun.EventBus.Sample
+{
+
+	// This struct will be our event itself.
+	// Events must derive from IEvent<> interface. Generic argument is the Arguments struct this event takes.
+    public struct EventA : IEvent<EventA.Args>
+    {
+		// This is the arguments we pass along with our event instance.
+		// This property is required by IEvent<> interface.
+        public Args Arguments { get; }
+
+		// This is our constructor. We want the emitter to give us an instance of 
+		// EventA.Args while creating the event.
+		// Please note that this is only necessary if you want to pass arguments with
+		// your event. Otherwise you may omit the constructor.
+        public EventA(Args arguments)
+        {
+            Arguments = arguments;
+        }
+
+		// This struct will hold our arguments.
+        public struct Args : IEventArguments
+        {
+            public string Message { get; }
+
+            public Args(string message)
+            {
+                Message = message;
+            }
+        }
+    }
+}
+
+
+
 ```
 
 **Note:** You don't have to have an Arguments implementation. If you omit it, that means your event won't take any arguments. You EventA class constructor will look like this then:
