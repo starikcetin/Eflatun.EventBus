@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
+using Eflatun.EventBus.interfaces;
 
 namespace Eflatun.EventBus
 {
-    public class EventBus<TEvent, TArgs>
-        where TEvent : IEvent<TArgs>
-        where TArgs : IEventArguments
+    public class EventBus<TEvent>
+        where TEvent : IEvent
     {
-        private readonly List<IEventListener<TEvent, TArgs>> _listeners = new List<IEventListener<TEvent, TArgs>>();
+        private readonly List<IEventListener<TEvent>> _listeners = new List<IEventListener<TEvent>>();
 
-        public void Emit(IEventEmitter<TEvent, TArgs> sender, TEvent @event)
+        public void Emit(IEventEmitter<TEvent> sender, TEvent @event)
         {
             _listeners.ForEach(x => x.OnEvent(sender, @event));
         }
 
-        public void Listen(IEventListener<TEvent, TArgs> listener)
+        public void Listen(IEventListener<TEvent> listener)
         {
             _listeners.Add(listener);
         }

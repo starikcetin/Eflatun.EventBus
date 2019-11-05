@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Eflatun.EventBus.interfaces;
+using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class ListenerC : IInitializable, IEventListener<EventC, EventC.Args>
+    public class ListenerC : IInitializable, IEventListener<EventC>
     {
-        private readonly EventBus<EventC, EventC.Args> _eventBus;
+        private readonly EventBus<EventC> _eventBus;
 
-        public ListenerC(EventBus<EventC, EventC.Args> eventBus)
+        public ListenerC(EventBus<EventC> eventBus)
         {
             _eventBus = eventBus;
         }
@@ -17,7 +18,7 @@ namespace Eflatun.EventBus.Sample
             _eventBus.Listen(this);
         }
 
-        public void OnEvent(IEventEmitter<EventC, EventC.Args> sender, EventC @event)
+        public void OnEvent(IEventEmitter<EventC> sender, EventC @event)
         {
             var args = @event.Arguments;
             var tick = args.Tick;

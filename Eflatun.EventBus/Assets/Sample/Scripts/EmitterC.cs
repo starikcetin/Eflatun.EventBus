@@ -1,12 +1,13 @@
-﻿using Zenject;
+﻿using Eflatun.EventBus.interfaces;
+using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class EmitterC : ITickable, IEventEmitter<EventC, EventC.Args>
+    public class EmitterC : ITickable, IEventEmitter<EventC>
     {
-        private readonly EventBus<EventC, EventC.Args> _eventBus;
+        private readonly EventBus<EventC> _eventBus;
 
-        public EmitterC(EventBus<EventC, EventC.Args> eventBus)
+        public EmitterC(EventBus<EventC> eventBus)
         {
             _eventBus = eventBus;
         }

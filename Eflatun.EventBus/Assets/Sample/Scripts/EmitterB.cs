@@ -1,15 +1,16 @@
 ﻿using System.Collections;
+using Eflatun.EventBus.interfaces;
 using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class EmitterB : MonoBehaviour, IEventEmitter<EventB, EventB.Args>
+    public class EmitterB : MonoBehaviour, IEventEmitter<EventB>
     {
-        private EventBus<EventB, EventB.Args> _eventBus;
+        private EventBus<EventB> _eventBus;
 
         [Inject]
-        public void Init(EventBus<EventB, EventB.Args> eventBus)
+        public void Init(EventBus<EventB> eventBus)
         {
             _eventBus = eventBus;
         }
