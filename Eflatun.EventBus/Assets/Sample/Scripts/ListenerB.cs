@@ -3,12 +3,12 @@ using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class ListenerB : MonoBehaviour, IEventListener<EventB>
+    public class ListenerB : MonoBehaviour, IEventListener<EventB, EventB.Args>
     {
-        private EventBus<EventB> _eventBus;
+        private EventBus<EventB, EventB.Args> _eventBus;
 
         [Inject]
-        public void Init(EventBus<EventB> eventBus)
+        public void Init(EventBus<EventB, EventB.Args> eventBus)
         {
             _eventBus = eventBus;
         }
@@ -18,9 +18,9 @@ namespace Eflatun.EventBus.Sample
             _eventBus.Listen(this);
         }
 
-        public void OnEvent(EventB @event)
+        public void OnEvent(IEventEmitter<EventB, EventB.Args> sender, EventB @event)
         {
-            Debug.Log($"{nameof(ListenerB)} on {gameObject.name} received: " + @event);
+            Debug.Log($"{nameof(ListenerB)} on {gameObject.name} received {@event} from {sender}");
         }
     }
 }

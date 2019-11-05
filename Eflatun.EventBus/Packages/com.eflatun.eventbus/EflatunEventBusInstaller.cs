@@ -6,7 +6,7 @@ namespace Eflatun.EventBus
     {
         public override void InstallBindings()
         {
-            Container.Bind(typeof(EventBus<>)).ToSelf().AsSingle();
+            Container.Bind(typeof(EventBus<,>)).ToSelf().AsSingle();
         }
     }
 }

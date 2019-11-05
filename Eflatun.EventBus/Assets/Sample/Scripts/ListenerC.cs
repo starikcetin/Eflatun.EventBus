@@ -3,11 +3,11 @@ using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class ListenerC : IInitializable, IEventListener<EventC>
+    public class ListenerC : IInitializable, IEventListener<EventC, EventC.Args>
     {
-        private readonly EventBus<EventC> _eventBus;
+        private readonly EventBus<EventC, EventC.Args> _eventBus;
 
-        public ListenerC(EventBus<EventC> eventBus)
+        public ListenerC(EventBus<EventC, EventC.Args> eventBus)
         {
             _eventBus = eventBus;
         }
@@ -17,9 +17,11 @@ namespace Eflatun.EventBus.Sample
             _eventBus.Listen(this);
         }
 
-        public void OnEvent(EventC @event)
+        public void OnEvent(IEventEmitter<EventC, EventC.Args> sender, EventC @event)
         {
-            Debug.Log($"{nameof(ListenerC)} received: " + @event);
+            var args = @event.Arguments;
+            var tick = args.Tick;
+            Debug.Log($"{nameof(ListenerC)} received {@event} from {sender}: Tick={tick}");
         }
     }
 }

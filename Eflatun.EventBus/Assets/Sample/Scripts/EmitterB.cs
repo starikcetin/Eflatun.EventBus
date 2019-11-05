@@ -4,12 +4,12 @@ using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class EmitterB : MonoBehaviour, IEventEmitter<EventB>
+    public class EmitterB : MonoBehaviour, IEventEmitter<EventB, EventB.Args>
     {
-        private EventBus<EventB> _eventBus;
+        private EventBus<EventB, EventB.Args> _eventBus;
 
         [Inject]
-        public void Init(EventBus<EventB> eventBus)
+        public void Init(EventBus<EventB, EventB.Args> eventBus)
         {
             _eventBus = eventBus;
         }
@@ -17,7 +17,9 @@ namespace Eflatun.EventBus.Sample
         public IEnumerator Start()
         {
             yield return null;
-            _eventBus.Emit(new EventB(this, null));
+            var args = new EventB.Args($"sent from {nameof(EmitterB)}");
+            var @event = new EventB(args);
+            _eventBus.Emit(this, @event);
         }
     }
 }

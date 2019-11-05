@@ -2,17 +2,18 @@
 
 namespace Eflatun.EventBus
 {
-    public class EventBus<T>
-        where T : Event<T>
+    public class EventBus<TEvent, TArgs>
+        where TEvent : IEvent<TArgs>
+        where TArgs : IEventArguments
     {
-        private readonly List<IEventListener<T>> _listeners = new List<IEventListener<T>>();
+        private readonly List<IEventListener<TEvent, TArgs>> _listeners = new List<IEventListener<TEvent, TArgs>>();
 
-        public void Emit(T @event)
+        public void Emit(IEventEmitter<TEvent, TArgs> sender, TEvent @event)
         {
-            _listeners.ForEach(x => x.OnEvent(@event));
+            _listeners.ForEach(x => x.OnEvent(sender, @event));
         }
 
-        public void Listen(IEventListener<T> listener)
+        public void Listen(IEventListener<TEvent, TArgs> listener)
         {
             _listeners.Add(listener);
         }

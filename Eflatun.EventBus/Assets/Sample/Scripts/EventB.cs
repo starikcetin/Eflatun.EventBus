@@ -1,12 +1,15 @@
 ﻿namespace Eflatun.EventBus.Sample
 {
-    public class EventB : Event<EventB>
+    public struct EventB : IEvent<EventB.Args>
     {
-        public EventB(IEventEmitter<EventB> sender, Args args) : base(sender, args)
+        public Args Arguments { get; }
+
+        public EventB(Args arguments)
         {
+            Arguments = arguments;
         }
 
-        public class Args : EventArguments<EventB>
+        public struct Args : IEventArguments
         {
             public string Message { get; }
 
