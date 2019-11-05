@@ -1,14 +1,8 @@
 ﻿namespace Eflatun.EventBus.interfaces
 {
-    public interface IEventListener<TEvent>
+    public interface IEventListener<in TEvent>
         where TEvent : IEvent
     {
-        void OnEvent(IEventEmitter<TEvent> sender, TEvent @event);
-    }
-
-    public interface IEventListener<TEvent, TArgs> : IEventListener<TEvent>
-        where TEvent : IEvent<TArgs>
-        where TArgs : IEventArguments
-    {
+        void OnEvent(object sender, TEvent @event);
     }
 }

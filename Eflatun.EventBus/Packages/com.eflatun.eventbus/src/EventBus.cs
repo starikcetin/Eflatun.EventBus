@@ -8,7 +8,7 @@ namespace Eflatun.EventBus
     {
         private readonly List<IEventListener<TEvent>> _listeners = new List<IEventListener<TEvent>>();
 
-        public void Emit(IEventEmitter<TEvent> sender, TEvent @event)
+        public void Emit(object sender, TEvent @event)
         {
             _listeners.ForEach(x => x.OnEvent(sender, @event));
         }

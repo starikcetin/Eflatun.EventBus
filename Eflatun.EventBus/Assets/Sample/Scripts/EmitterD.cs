@@ -2,11 +2,11 @@
 
 namespace Eflatun.EventBus.Sample
 {
-    public class EmitterC : ITickable
+    public class EmitterD : ITickable
     {
-        private readonly EventBus<EventC> _eventBus;
+        private readonly EventBus<EventD> _eventBus;
 
-        public EmitterC(EventBus<EventC> eventBus)
+        public EmitterD(EventBus<EventD> eventBus)
         {
             _eventBus = eventBus;
         }
@@ -19,8 +19,8 @@ namespace Eflatun.EventBus.Sample
 
             if (_ticks % 10 == 0)
             {
-                var args = new EventC.Args(_ticks);
-                var @event = new EventC(args);
+                var args = new EventD.Args(_ticks.ToString());
+                var @event = new EventD(args);
                 _eventBus.Emit(this, @event);
             }
         }

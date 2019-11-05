@@ -19,7 +19,7 @@ namespace Eflatun.EventBus.Sample
             _eventBus.Listen(this);
         }
 
-        public void OnEvent(IEventEmitter<EventB> sender, EventB @event)
+        public void OnEvent(object sender, EventB @event)
         {
             Debug.Log($"{nameof(ListenerB)} on {gameObject.name} received {@event} from {sender}");
         }

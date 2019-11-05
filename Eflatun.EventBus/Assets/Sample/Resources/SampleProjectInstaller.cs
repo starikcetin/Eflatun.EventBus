@@ -8,6 +8,7 @@ namespace Eflatun.EventBus.Sample
         {
             Container.BindInterfacesTo<EmitterC>().AsSingle();
             Container.BindInterfacesTo<ListenerC>().AsSingle();
+            Container.BindInterfacesTo<EmitterD>().AsSingle();
         }
     }
 }

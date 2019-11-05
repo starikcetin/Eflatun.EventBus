@@ -18,7 +18,7 @@ namespace Eflatun.EventBus.Sample
             _eventBus.Listen(this);
         }
 
-        public void OnEvent(IEventEmitter<EventC> sender, EventC @event)
+        public void OnEvent(object sender, EventC @event)
         {
             var args = @event.Arguments;
             var tick = args.Tick;
