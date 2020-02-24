@@ -1,3 +1,5 @@
+[![openupm](https://img.shields.io/npm/v/com.eflatun.eventbus?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.eflatun.eventbus/)
+
 # Eflatun.EventBus
 Generic event bus for Unity with Extenject.
 
@@ -8,15 +10,10 @@ This library offers a more flexible solution. It implements an event bus, that a
 
 ## Installation
 
-This repository is a UPM package.
-
-1. Get these: 
-
-    1. https://github.com/mob-sakai/UpmGitExtension
-    
-    2. https://github.com/mob-sakai/GitDependencyResolverForUnity
-
-2. Install this repo from Unity Package Manager window, inside Unity *(follow the instructions on the first link above if this is your first time using UPM for Git repositories)*.
+```
+npm install -g openupm-cli
+openupm add com.eflatun.eventbus
+```
 
 ## Usage
 
