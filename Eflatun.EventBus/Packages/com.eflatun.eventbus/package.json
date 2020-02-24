@@ -7,6 +7,6 @@
   "version": "0.1.0",
   "type": "library",
   "dependencies": {
-    "com.svermeulen.extenject": "https://github.com/starikcetin/Extenject.git#9.1.0"
+    "com.svermeulen.extenject": "9.1.0"
   }
 }
