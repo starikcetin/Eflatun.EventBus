@@ -1,6 +1,7 @@
-﻿using Zenject;
+﻿using Eflatun.EventBus;
+using Zenject;
 
-namespace Eflatun.EventBus.Sample
+namespace sample
 {
     public class EmitterC : ITickable
     {

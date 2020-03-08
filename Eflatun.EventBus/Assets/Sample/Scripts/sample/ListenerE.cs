@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Eflatun.EventBus;
+using UnityEngine;
 using Zenject;
 
-namespace Eflatun.EventBus.Sample
+namespace sample
 {
     public class ListenerE : IInitializable
     {
@@ -14,7 +15,7 @@ namespace Eflatun.EventBus.Sample
 
         public void Initialize()
         {
-            _eventBus.Listen(OnEvent);
+            _eventBus.AddListener(OnEvent);
         }
 
         private void OnEvent(object sender, EventE @event)

@@ -1,8 +1,8 @@
 using Zenject;
 
-namespace Eflatun.EventBus.Sample
+namespace sample
 {
-    public class SampleProjectInstaller : MonoInstaller
+    public class SampleInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

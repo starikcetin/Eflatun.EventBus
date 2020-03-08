@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Eflatun.EventBus;
 
-namespace Eflatun.EventBus.Sample
+namespace sample
 {
     public struct EventD : IEvent<EventD.Args>
     {

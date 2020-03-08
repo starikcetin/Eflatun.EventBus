@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using Eflatun.EventBus;
 using UnityEngine;
 using Zenject;
 
-namespace Eflatun.EventBus.Sample
+namespace sample
 {
     public class EmitterB : MonoBehaviour
     {
