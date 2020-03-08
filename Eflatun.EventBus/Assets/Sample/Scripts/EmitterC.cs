@@ -4,9 +4,9 @@ namespace Eflatun.EventBus.Sample
 {
     public class EmitterC : ITickable
     {
-        private readonly EventBus<EventC> _eventBus;
+        private readonly EventBus _eventBus;
 
-        public EmitterC(EventBus<EventC> eventBus)
+        public EmitterC(EventBus eventBus)
         {
             _eventBus = eventBus;
         }

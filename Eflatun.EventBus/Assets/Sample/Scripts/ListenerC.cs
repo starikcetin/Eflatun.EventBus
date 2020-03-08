@@ -5,16 +5,16 @@ namespace Eflatun.EventBus.Sample
 {
     public class ListenerC : IInitializable
     {
-        private readonly EventBus<EventC> _eventBus;
+        private readonly EventBus _eventBus;
 
-        public ListenerC(EventBus<EventC> eventBus)
+        public ListenerC(EventBus eventBus)
         {
             _eventBus = eventBus;
         }
 
         public void Initialize()
         {
-            _eventBus.Listen(OnEvent);
+            _eventBus.Listen<EventC>(OnEvent);
         }
 
         private void OnEvent(object sender, EventC @event)

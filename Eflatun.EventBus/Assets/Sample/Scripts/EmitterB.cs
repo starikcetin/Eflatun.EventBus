@@ -6,10 +6,10 @@ namespace Eflatun.EventBus.Sample
 {
     public class EmitterB : MonoBehaviour
     {
-        private EventBus<EventB> _eventBus;
+        private EventBus _eventBus;
 
         [Inject]
-        public void Init(EventBus<EventB> eventBus)
+        public void Init(EventBus eventBus)
         {
             _eventBus = eventBus;
         }
