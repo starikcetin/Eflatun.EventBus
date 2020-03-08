@@ -9,6 +9,9 @@ namespace Eflatun.EventBus
         private readonly List<EventHandler<TEvent>> _listeners = new List<EventHandler<TEvent>>();
         private readonly List<EventHandler<TEvent>> _listenersAfter = new List<EventHandler<TEvent>>();
 
+        /// <summary>
+        /// Emit an event.
+        /// </summary>
         public void Emit(object sender, TEvent @event)
         {
             _listenersBefore.ForEach(x => x?.Invoke(sender, @event));
