@@ -1,10 +1,9 @@
-﻿using Eflatun.EventBus.interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class ListenerA : MonoBehaviour, IEventListener<EventA>
+    public class ListenerA : MonoBehaviour
     {
         private EventBus<EventA> _eventBus;
 
@@ -16,10 +15,10 @@ namespace Eflatun.EventBus.Sample
 
         public void Start()
         {
-            _eventBus.Listen(this);
+            _eventBus.Listen(OnEvent);
         }
 
-        public void OnEvent(object sender, EventA @event)
+        private void OnEvent(object sender, EventA @event)
         {
             var args = @event.Arguments;
             var message = args.Message;

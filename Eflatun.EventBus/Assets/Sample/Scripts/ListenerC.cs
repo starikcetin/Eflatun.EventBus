@@ -1,10 +1,9 @@
-﻿using Eflatun.EventBus.interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Sample
 {
-    public class ListenerC : IInitializable, IEventListener<EventC>
+    public class ListenerC : IInitializable
     {
         private readonly EventBus<EventC> _eventBus;
 
@@ -15,10 +14,10 @@ namespace Eflatun.EventBus.Sample
 
         public void Initialize()
         {
-            _eventBus.Listen(this);
+            _eventBus.Listen(OnEvent);
         }
 
-        public void OnEvent(object sender, EventC @event)
+        private void OnEvent(object sender, EventC @event)
         {
             var args = @event.Arguments;
             var tick = args.Tick;

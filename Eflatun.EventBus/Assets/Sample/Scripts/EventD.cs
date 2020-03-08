@@ -1,5 +1,4 @@
-﻿using Eflatun.EventBus.interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Eflatun.EventBus.Sample
 {

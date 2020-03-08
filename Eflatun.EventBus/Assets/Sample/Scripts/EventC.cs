@@ -1,6 +1,4 @@
-﻿using Eflatun.EventBus.interfaces;
-
-namespace Eflatun.EventBus.Sample
+﻿namespace Eflatun.EventBus.Sample
 {
     public struct EventC : IEvent<EventC.Args>
     {
