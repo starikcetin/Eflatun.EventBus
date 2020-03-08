@@ -4,7 +4,7 @@
 	"displayName": "Eflatun.EventBus",
 	"license": "MIT",
 	"name": "com.eflatun.eventbus",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"type": "library",
 	"dependencies": {
 		"com.svermeulen.extenject": "9.1.0"

@@ -1,4 +1,4 @@
-﻿namespace Eflatun.EventBus.interfaces
+﻿namespace Eflatun.EventBus
 {
     public interface IEvent
     {
