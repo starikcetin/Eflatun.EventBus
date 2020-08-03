@@ -1,5 +1,7 @@
 [![openupm](https://img.shields.io/npm/v/com.eflatun.eventbus?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.eflatun.eventbus/)
 
+_**Note:** The documentation is a little outdated. I will update it as soon as I get the chance._
+
 # Eflatun.EventBus
 Generic event bus for Unity with Extenject.
 
