@@ -44,11 +44,27 @@ namespace Eflatun.EventBus
         }
 
         /// <summary>
-        /// Remove a listener (from before, regular, and active lists).
+        /// Remove a listener from the regular list.
         /// </summary>
         public void RemoveListener(EventHandler<TEvent> listener)
         {
             _listeners.Remove(listener);
+        }
+
+        /// <summary>
+        /// Remove a listener from the before list.
+        /// </summary>
+        public void RemoveListenerBefore(EventHandler<TEvent> listener)
+        {
+            _listenersBefore.Remove(listener);
+        }
+
+        /// <summary>
+        /// Remove a listener from the after list.
+        /// </summary>
+        public void RemoveListenerAfter(EventHandler<TEvent> listener)
+        {
+            _listenersAfter.Remove(listener);
         }
     }
 }
