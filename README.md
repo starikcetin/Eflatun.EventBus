@@ -131,7 +131,7 @@ Emitters can be anything you want, they don't have to be a `MonoBehaviour`.
 using UnityEngine;
 using Zenject;
 
-public class ListenerA : MonoBehaviour, IEventListener<EventA>
+public class ListenerA : MonoBehaviour
 {
     // Get our event bus from Extenject.
     private EventBus<EventA> _eventBus;
