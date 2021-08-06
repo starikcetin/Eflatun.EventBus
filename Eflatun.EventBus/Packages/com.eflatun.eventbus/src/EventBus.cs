@@ -4,8 +4,6 @@ namespace Eflatun.EventBus
 {
     public class EventBus<TEvent> where TEvent : IEvent
     {
-        private static readonly int AllChannelsChannel = -1;
-
         private readonly ChannelContext<TEvent> _broadcastContext = new ChannelContext<TEvent>();
         private readonly Dictionary<int, ChannelContext<TEvent>> _channelContexts = new Dictionary<int, ChannelContext<TEvent>>();
 
@@ -16,7 +14,7 @@ namespace Eflatun.EventBus
 
         public void Emit(IEnumerable<int> channels, object sender, TEvent @event)
         {
-            _channelContexts[AllChannelsChannel].Send(sender, @event);
+            _channelContexts[EventBusConstants.AllChannelsChannel].Send(sender, @event);
 
             foreach (var channel in channels)
             {
