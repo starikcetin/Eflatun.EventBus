@@ -11,9 +11,7 @@
       "version": "file:com.eflatun.eventbus",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {
-        "com.svermeulen.extenject": "9.1.0"
-      }
+      "dependencies": {}
     },
     "com.svermeulen.extenject": {
       "version": "9.2.0-stcf3",
