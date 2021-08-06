@@ -2,13 +2,15 @@
   "dependencies": {
     "com.coffee.git-dependency-resolver": "https://github.com/mob-sakai/GitDependencyResolverForUnity.git#1.1.3",
     "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git#0.9.1",
-    "com.unity.collab-proxy": "1.2.16",
-    "com.unity.ext.nunit": "1.0.0",
-    "com.unity.ide.rider": "1.1.4",
-    "com.unity.ide.vscode": "1.1.4",
-    "com.unity.test-framework": "1.1.9",
-    "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.10",
+    "com.svermeulen.extenject": "9.1.0",
+    "com.unity.collab-proxy": "1.7.1",
+    "com.unity.ext.nunit": "1.0.6",
+    "com.unity.ide.rider": "2.0.7",
+    "com.unity.ide.visualstudio": "2.0.9",
+    "com.unity.ide.vscode": "1.2.3",
+    "com.unity.test-framework": "1.1.27",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.timeline": "1.4.8",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -40,18 +42,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.svermeulen.extenject": "9.1.0"
-  },
-  "lock": {
-    "com.coffee.git-dependency-resolver": {
-      "revision": "1.1.3",
-      "hash": "693ee01bd5afa0adb697fb435261dc866a883ad3"
-    },
-    "com.coffee.upm-git-extension": {
-      "revision": "0.9.1",
-      "hash": "79fa88282ae1233e4841d87fd256b80f13cd8b62"
-    }
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {
