@@ -4,8 +4,7 @@
     {
     }
 
-    public interface IEvent<out TArgs> : IEvent
-        where TArgs : IEventArguments
+    public interface IEvent<out TArgs> : IEvent where TArgs : IEventArguments
     {
         TArgs Arguments { get; }
     }

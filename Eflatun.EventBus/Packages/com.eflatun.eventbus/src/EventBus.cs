@@ -2,69 +2,65 @@
 
 namespace Eflatun.EventBus
 {
-    public class EventBus<TEvent>
-        where TEvent : IEvent
+    public class EventBus<TEvent> where TEvent : IEvent
     {
-        private readonly List<EventHandler<TEvent>> _listenersBefore = new List<EventHandler<TEvent>>();
-        private readonly List<EventHandler<TEvent>> _listeners = new List<EventHandler<TEvent>>();
-        private readonly List<EventHandler<TEvent>> _listenersAfter = new List<EventHandler<TEvent>>();
+        private static readonly int AllChannelsChannel = -1;
 
-        /// <summary>
-        /// Emit an event.
-        /// </summary>
-        public void Emit(object sender, TEvent @event)
+        private readonly ChannelContext<TEvent> _broadcastContext = new ChannelContext<TEvent>();
+        private readonly Dictionary<int, ChannelContext<TEvent>> _channelContexts = new Dictionary<int, ChannelContext<TEvent>>();
+
+        public void Broadcast(object sender, TEvent @event)
         {
-            _listenersBefore.ForEach(x => x?.Invoke(sender, @event));
-            _listeners.ForEach(x => x?.Invoke(sender, @event));
-            _listenersAfter.ForEach(x => x?.Invoke(sender, @event));
+            _broadcastContext.Send(sender, @event);
         }
 
-        /// <summary>
-        /// Add a listener that is invoked before regular listeners.
-        /// </summary>
-        public void AddListenerBefore(EventHandler<TEvent> listener)
+        public void Emit(IEnumerable<int> channels, object sender, TEvent @event)
         {
-            _listenersBefore.Add(listener);
+            _channelContexts[AllChannelsChannel].Send(sender, @event);
+
+            foreach (var channel in channels)
+            {
+                EnsureChannelContext(channel);
+                _channelContexts[channel].Send(sender, @event);
+            }
         }
 
-        /// <summary>
-        /// Add a regular listener.
-        /// </summary>
-        public void AddListener(EventHandler<TEvent> listener)
+        public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            _listeners.Add(listener);
+            if (config.ReceiveBroadcasts)
+            {
+                _broadcastContext.AddListener(config.Phase, listener);
+            }
+
+            foreach (var channel in config.Channels)
+            {
+                EnsureChannelContext(channel);
+                _channelContexts[channel].AddListener(config.Phase, listener);
+            }
         }
 
-        /// <summary>
-        /// Add a listener that is invoked after the regular listeners.
-        /// </summary>
-        public void AddListenerAfter(EventHandler<TEvent> listener)
+        public void RemoveListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            _listenersAfter.Add(listener);
+            if (config.ReceiveBroadcasts)
+            {
+                _broadcastContext.RemoveListener(config.Phase, listener);
+            }
+
+            foreach (var channel in config.Channels)
+            {
+                EnsureChannelContext(channel);
+                _channelContexts[channel].RemoveListener(config.Phase, listener);
+            }
         }
 
-        /// <summary>
-        /// Remove a listener from the regular list.
-        /// </summary>
-        public void RemoveListener(EventHandler<TEvent> listener)
+        private void EnsureChannelContext(int channel)
         {
-            _listeners.Remove(listener);
-        }
+            if (_channelContexts.ContainsKey(channel))
+            {
+                return;
+            }
 
-        /// <summary>
-        /// Remove a listener from the before list.
-        /// </summary>
-        public void RemoveListenerBefore(EventHandler<TEvent> listener)
-        {
-            _listenersBefore.Remove(listener);
-        }
-
-        /// <summary>
-        /// Remove a listener from the after list.
-        /// </summary>
-        public void RemoveListenerAfter(EventHandler<TEvent> listener)
-        {
-            _listenersAfter.Remove(listener);
+            _channelContexts.Add(channel, new ChannelContext<TEvent>());
         }
     }
 }
