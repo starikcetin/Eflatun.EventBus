@@ -14,40 +14,42 @@ namespace Eflatun.EventBus
         {
             foreach (var listener in _broadcastListeners)
             {
-                listener?.Invoke(sender, @event);
+                listener.Invoke(sender, @event);
             }
         }
 
         public void Emit(ISet<int> channels, object sender, TEvent @event)
         {
-            _combineSet.Clear();
-
-            // collect all interested listeners to combineSet
+            // collect all relevant listeners into combineSet
             _combineSet.UnionWith(_allChannelsListeners);
+
             foreach (var channel in channels)
             {
                 EnsureChannelListenerList(channel);
                 _combineSet.UnionWith(_channelListeners[channel]);
             }
 
-            // invoke the combinedSet
+            // invoke the listeners in combineSet
             foreach (var listener in _combineSet)
             {
-                listener?.Invoke(sender, @event);
+                listener.Invoke(sender, @event);
             }
+
+            // clear combineSet
+            _combineSet.Clear();
         }
 
         public void Emit(int channel, object sender, TEvent @event)
         {
             foreach (var listener in _allChannelsListeners)
             {
-                listener?.Invoke(sender, @event);
+                listener.Invoke(sender, @event);
             }
 
             EnsureChannelListenerList(channel);
             foreach (var listener in _channelListeners[channel])
             {
-                listener?.Invoke(sender, @event);
+                listener.Invoke(sender, @event);
             }
         }
 
@@ -91,12 +93,10 @@ namespace Eflatun.EventBus
 
         private void EnsureChannelListenerList(int channel)
         {
-            if (_channelListeners.ContainsKey(channel))
+            if (!_channelListeners.ContainsKey(channel))
             {
-                return;
+                _channelListeners.Add(channel, new HashSet<EventHandler<TEvent>>());
             }
-
-            _channelListeners.Add(channel, new HashSet<EventHandler<TEvent>>());
         }
     }
 }
