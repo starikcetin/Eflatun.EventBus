@@ -12,14 +12,18 @@ namespace Eflatun.EventBus
 
         public void Broadcast(object sender, TEvent @event)
         {
+            var metadata = new EventMetadata(InternalConstants.EmptyIntSet, sender, true);
+
             foreach (var listener in _broadcastListeners)
             {
-                listener.Invoke(sender, @event);
+                listener.Invoke(metadata, @event);
             }
         }
 
         public void Emit(ISet<int> channels, object sender, TEvent @event)
         {
+            var metadata = new EventMetadata(channels, sender, false);
+
             // collect all relevant listeners into combineSet
             _combineSet.UnionWith(_allChannelsListeners);
 
@@ -32,7 +36,7 @@ namespace Eflatun.EventBus
             // invoke the listeners in combineSet
             foreach (var listener in _combineSet)
             {
-                listener.Invoke(sender, @event);
+                listener.Invoke(metadata, @event);
             }
 
             // clear combineSet
@@ -41,15 +45,17 @@ namespace Eflatun.EventBus
 
         public void Emit(int channel, object sender, TEvent @event)
         {
+            var metadata = new EventMetadata(new HashSet<int>(new[] {channel}),sender, false);
+
             foreach (var listener in _allChannelsListeners)
             {
-                listener.Invoke(sender, @event);
+                listener.Invoke(metadata, @event);
             }
 
             EnsureChannelListenerList(channel);
             foreach (var listener in _channelListeners[channel])
             {
-                listener.Invoke(sender, @event);
+                listener.Invoke(metadata, @event);
             }
         }
 

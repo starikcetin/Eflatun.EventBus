@@ -25,9 +25,9 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigTest
             _eventBus.RemoveListener(_listenerConfig, OnEventA);
         }
 
-        private void OnEventA(object sender, EventA @event)
+        private void OnEventA(EventMetadata metadata, EventA @event)
         {
-            Debug.Log($"{nameof(L2)} received {nameof(EventA)} from {sender.GetType().Name}");
+            Debug.Log($"{nameof(L2)} received {nameof(EventA)} from {metadata.Sender.GetType().Name}");
         }
     }
 }

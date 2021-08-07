@@ -21,9 +21,9 @@ namespace Eflatun.EventBus.Dev.Samples.DestroyedListenerTest
             _eventBus.AddListener(_listenerConfig, OnEventA);
         }
 
-        private void OnEventA(object sender, EventA @event)
+        private void OnEventA(EventMetadata metadata, EventA @event)
         {
-            Debug.Log($"{sender.GetType().Name}\t->\t{nameof(L01)}");
+            Debug.Log($"{metadata.Sender.GetType().Name}\t->\t{nameof(L01)}");
         }
     }
 }
