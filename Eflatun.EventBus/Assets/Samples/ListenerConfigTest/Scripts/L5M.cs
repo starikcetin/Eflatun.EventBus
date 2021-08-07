@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -6,12 +7,12 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigTest
     public class L5M : MonoBehaviour
     {
         private EventBus<EventA> _eventBus;
-        private EventBus.ListenerConfig _listenerConfig;
+        private ListenerConfig _listenerConfig;
 
         [Inject]
         private void _Init(EventBus<EventA> eventBus)
         {
-            _listenerConfig = EventBus.ListenerConfig.MultipleChannelsNoBroadcast(new[] {0}, ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
             _eventBus = eventBus;
         }
 

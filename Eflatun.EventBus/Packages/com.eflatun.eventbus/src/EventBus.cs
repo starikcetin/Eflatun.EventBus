@@ -19,7 +19,7 @@ namespace Eflatun.EventBus
             _phaseContexts[ListenPhase.After].Broadcast(sender, @event);
         }
 
-        public void Emit(IEnumerable<int> channels, object sender, TEvent @event)
+        public void Emit(ISet<int> channels, object sender, TEvent @event)
         {
             _phaseContexts[ListenPhase.Before].Emit(channels, sender, @event);
             _phaseContexts[ListenPhase.Regular].Emit(channels, sender, @event);

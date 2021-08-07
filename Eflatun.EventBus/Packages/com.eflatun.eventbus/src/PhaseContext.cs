@@ -4,32 +4,47 @@ namespace Eflatun.EventBus
 {
     public class PhaseContext<TEvent> where TEvent : IEvent
     {
-        private readonly List<EventHandler<TEvent>> _broadcastListeners = new List<EventHandler<TEvent>>();
-        private readonly List<EventHandler<TEvent>> _allChannelsListeners = new List<EventHandler<TEvent>>();
-        private readonly Dictionary<int, List<EventHandler<TEvent>>> _channelListeners = new Dictionary<int, List<EventHandler<TEvent>>>();
+        private readonly ISet<EventHandler<TEvent>> _broadcastListeners = new HashSet<EventHandler<TEvent>>();
+        private readonly ISet<EventHandler<TEvent>> _allChannelsListeners = new HashSet<EventHandler<TEvent>>();
+        private readonly IDictionary<int, ISet<EventHandler<TEvent>>> _channelListeners = new Dictionary<int, ISet<EventHandler<TEvent>>>();
 
         public void Broadcast(object sender, TEvent @event)
         {
-            _broadcastListeners.ForEach(l => l?.Invoke(sender, @event));
+            foreach (var listener in _broadcastListeners)
+            {
+                listener?.Invoke(sender, @event);
+            }
         }
 
-        public void Emit(IEnumerable<int> channels, object sender, TEvent @event)
+        public void Emit(ISet<int> channels, object sender, TEvent @event)
         {
-            _allChannelsListeners.ForEach(l => l?.Invoke(sender, @event));
+            foreach (var listener in _allChannelsListeners)
+            {
+                listener?.Invoke(sender, @event);
+            }
 
             foreach (var channel in channels)
             {
                 EnsureChannelListenerList(channel);
-                _channelListeners[channel].ForEach(l => l?.Invoke(sender, @event));
+                foreach (var listener in _channelListeners[channel])
+                {
+                    listener?.Invoke(sender, @event);
+                }
             }
         }
 
         public void Emit(int channel, object sender, TEvent @event)
         {
-            _allChannelsListeners.ForEach(l => l?.Invoke(sender, @event));
+            foreach (var listener in _allChannelsListeners)
+            {
+                listener?.Invoke(sender, @event);
+            }
 
             EnsureChannelListenerList(channel);
-            _channelListeners[channel].ForEach(l => l?.Invoke(sender, @event));
+            foreach (var listener in _channelListeners[channel])
+            {
+                listener?.Invoke(sender, @event);
+            }
         }
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
@@ -77,7 +92,7 @@ namespace Eflatun.EventBus
                 return;
             }
 
-            _channelListeners.Add(channel, new List<EventHandler<TEvent>>());
+            _channelListeners.Add(channel, new HashSet<EventHandler<TEvent>>());
         }
     }
 }

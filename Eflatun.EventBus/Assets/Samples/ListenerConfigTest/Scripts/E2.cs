@@ -15,7 +15,7 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigTest
 
         private void Start()
         {
-            _eventBus.Emit(new[] {0}, this, new EventA());
+            _eventBus.Emit(0, this, new EventA());
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +12,7 @@ namespace Eflatun.EventBus.Dev.Samples.ChannelsTest
         [Inject]
         private void _Init(EventBus<EventA> eventBus)
         {
-            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new []{ 0, 1 }, ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new []{ 0, 1 }), ListenPhase.Regular);
             _eventBus = eventBus;
         }
 

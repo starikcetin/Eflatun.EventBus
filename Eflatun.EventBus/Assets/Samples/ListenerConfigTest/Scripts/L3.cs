@@ -6,12 +6,12 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigTest
     public class L3 : MonoBehaviour
     {
         private EventBus<EventA> _eventBus;
-        private EventBus.ListenerConfig _listenerConfig;
+        private ListenerConfig _listenerConfig;
 
         [Inject]
         private void _Init(EventBus<EventA> eventBus)
         {
-            _listenerConfig = EventBus.ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
             _eventBus = eventBus;
         }
 
