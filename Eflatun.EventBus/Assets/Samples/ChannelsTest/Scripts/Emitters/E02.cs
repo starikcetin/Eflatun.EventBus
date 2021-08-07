@@ -16,8 +16,8 @@ namespace Eflatun.EventBus.Dev.Samples.ChannelsTest
 
         private void Start()
         {
+            Debug.Log($"------ Start of {nameof(E02)} ------");
             _eventBus.Emit(new HashSet<int>(new[] {0, 2}), this, new EventA());
-            Debug.Log($"------ End of {nameof(E02)} ------");
         }
     }
 }

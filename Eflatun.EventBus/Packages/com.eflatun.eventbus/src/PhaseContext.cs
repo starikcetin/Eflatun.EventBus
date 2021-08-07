@@ -4,6 +4,8 @@ namespace Eflatun.EventBus
 {
     public class PhaseContext<TEvent> where TEvent : IEvent
     {
+        private readonly ISet<EventHandler<TEvent>> _combineSet = new HashSet<EventHandler<TEvent>>();
+
         private readonly ISet<EventHandler<TEvent>> _broadcastListeners = new HashSet<EventHandler<TEvent>>();
         private readonly ISet<EventHandler<TEvent>> _allChannelsListeners = new HashSet<EventHandler<TEvent>>();
         private readonly IDictionary<int, ISet<EventHandler<TEvent>>> _channelListeners = new Dictionary<int, ISet<EventHandler<TEvent>>>();
@@ -18,18 +20,20 @@ namespace Eflatun.EventBus
 
         public void Emit(ISet<int> channels, object sender, TEvent @event)
         {
-            foreach (var listener in _allChannelsListeners)
-            {
-                listener?.Invoke(sender, @event);
-            }
+            _combineSet.Clear();
 
+            // collect all interested listeners to combineSet
+            _combineSet.UnionWith(_allChannelsListeners);
             foreach (var channel in channels)
             {
                 EnsureChannelListenerList(channel);
-                foreach (var listener in _channelListeners[channel])
-                {
-                    listener?.Invoke(sender, @event);
-                }
+                _combineSet.UnionWith(_channelListeners[channel]);
+            }
+
+            // invoke the combinedSet
+            foreach (var listener in _combineSet)
+            {
+                listener?.Invoke(sender, @event);
             }
         }
 
