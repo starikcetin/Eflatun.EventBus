@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Eflatun.EventBus
 {
@@ -6,11 +7,11 @@ namespace Eflatun.EventBus
     {
         /// Listen to all channels, and receive broadcasts.
         public static ListenerConfig AllChannelsAndBroadcast(ListenPhase phase) =>
-            new ListenerConfig(EventBusConstants.AllChannelsChannelArray, true, phase);
+            new ListenerConfig(true, true, phase);
 
         /// Listen to all channels, but do not receive broadcasts.
         public static ListenerConfig AllChannelsNoBroadcast(ListenPhase phase) =>
-            new ListenerConfig(EventBusConstants.AllChannelsChannelArray, false, phase);
+            new ListenerConfig(true, false, phase);
 
         /// Listen to multiple channels, and receive broadcasts.
         public static ListenerConfig MultipleChannelsAndBroadcast(IEnumerable<int> channels, ListenPhase phase) =>
@@ -30,21 +31,31 @@ namespace Eflatun.EventBus
 
         /// Do not listen to any channels, but receive broadcasts.
         public static ListenerConfig BroadcastOnly(ListenPhase phase) =>
-            new ListenerConfig(EventBusConstants.EmptyChannelArray, true, phase);
+            new ListenerConfig(false, true, phase);
 
-        public IEnumerable<int> Channels { get; }
-        public bool ReceiveBroadcasts { get; }
+        public IEnumerable<int> SpecificChannels { get; }
+        public bool ListeningToAllChannels { get; }
+        public bool ReceivingBroadcasts { get; }
         public ListenPhase Phase { get; }
 
-        public ListenerConfig(IEnumerable<int> channels, bool receiveBroadcasts, ListenPhase phase)
+        public ListenerConfig(bool listenToAllChannels, bool receiveBroadcasts, ListenPhase phase)
         {
-            Channels = channels;
-            ReceiveBroadcasts = receiveBroadcasts;
+            SpecificChannels = Enumerable.Empty<int>();
+            ListeningToAllChannels = listenToAllChannels;
+            ReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;
         }
 
-        public ListenerConfig(int channel, bool receiveBroadcasts, ListenPhase phase) : this(new[] {channel},
-            receiveBroadcasts, phase)
+        public ListenerConfig(IEnumerable<int> channels, bool receiveBroadcasts, ListenPhase phase)
+        {
+            SpecificChannels = channels;
+            ListeningToAllChannels = false;
+            ReceivingBroadcasts = receiveBroadcasts;
+            Phase = phase;
+        }
+
+        public ListenerConfig(int channel, bool receiveBroadcasts, ListenPhase phase)
+            : this(new[] {channel}, receiveBroadcasts, phase)
         {
         }
     }

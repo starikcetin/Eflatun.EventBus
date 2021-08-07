@@ -5,6 +5,7 @@ namespace Eflatun.EventBus
     public class EventBus<TEvent> where TEvent : IEvent
     {
         private readonly ChannelContext<TEvent> _broadcastContext = new ChannelContext<TEvent>();
+        private readonly ChannelContext<TEvent> _allChannelsContext = new ChannelContext<TEvent>();
         private readonly Dictionary<int, ChannelContext<TEvent>> _channelContexts = new Dictionary<int, ChannelContext<TEvent>>();
 
         public void Broadcast(object sender, TEvent @event)
@@ -14,7 +15,7 @@ namespace Eflatun.EventBus
 
         public void Emit(IEnumerable<int> channels, object sender, TEvent @event)
         {
-            _channelContexts[EventBusConstants.AllChannelsChannel].Send(sender, @event);
+            _allChannelsContext.Send(sender, @event);
 
             foreach (var channel in channels)
             {
@@ -25,12 +26,17 @@ namespace Eflatun.EventBus
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            if (config.ReceiveBroadcasts)
+            if (config.ListeningToAllChannels)
+            {
+                _allChannelsContext.AddListener(config.Phase, listener);
+            }
+
+            if (config.ReceivingBroadcasts)
             {
                 _broadcastContext.AddListener(config.Phase, listener);
             }
 
-            foreach (var channel in config.Channels)
+            foreach (var channel in config.SpecificChannels)
             {
                 EnsureChannelContext(channel);
                 _channelContexts[channel].AddListener(config.Phase, listener);
@@ -39,12 +45,17 @@ namespace Eflatun.EventBus
 
         public void RemoveListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            if (config.ReceiveBroadcasts)
+            if (config.ListeningToAllChannels)
+            {
+                _allChannelsContext.RemoveListener(config.Phase, listener);
+            }
+
+            if (config.ReceivingBroadcasts)
             {
                 _broadcastContext.RemoveListener(config.Phase, listener);
             }
 
-            foreach (var channel in config.Channels)
+            foreach (var channel in config.SpecificChannels)
             {
                 EnsureChannelContext(channel);
                 _channelContexts[channel].RemoveListener(config.Phase, listener);

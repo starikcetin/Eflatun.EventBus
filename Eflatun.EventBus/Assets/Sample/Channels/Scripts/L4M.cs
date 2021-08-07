@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Eflatun.EventBus.Dev.Sample.Channels
 {
-    public class L5 : MonoBehaviour
+    public class L4M : MonoBehaviour
     {
         private EventBus<EventA> _eventBus;
         private ListenerConfig _listenerConfig;
@@ -11,7 +11,7 @@ namespace Eflatun.EventBus.Dev.Sample.Channels
         [Inject]
         private void _Init(EventBus<EventA> eventBus)
         {
-            _listenerConfig = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0}, ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0}, ListenPhase.Regular);
             _eventBus = eventBus;
         }
 
@@ -27,7 +27,7 @@ namespace Eflatun.EventBus.Dev.Sample.Channels
 
         private void OnEventA(object sender, EventA @event)
         {
-            Debug.Log($"{nameof(L5)} received {nameof(EventA)} from {sender.GetType().Name}");
+            Debug.Log($"{nameof(L4M)} received {nameof(EventA)} from {sender.GetType().Name}");
         }
     }
 }
