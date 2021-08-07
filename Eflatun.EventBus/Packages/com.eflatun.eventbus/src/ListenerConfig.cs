@@ -12,13 +12,21 @@ namespace Eflatun.EventBus
         public static ListenerConfig AllChannelsNoBroadcast(ListenPhase phase) =>
             new ListenerConfig(EventBusConstants.AllChannelsChannelArray, false, phase);
 
-        /// Listen to specific channels, and receive broadcasts.
-        public static ListenerConfig SpecificChannelsAndBroadcast(IEnumerable<int> channels, ListenPhase phase) =>
+        /// Listen to multiple channels, and receive broadcasts.
+        public static ListenerConfig MultipleChannelsAndBroadcast(IEnumerable<int> channels, ListenPhase phase) =>
             new ListenerConfig(channels, true, phase);
 
-        /// Listen to specific channels, but do not receive broadcasts.
-        public static ListenerConfig SpecificChannelsNoBroadcast(IEnumerable<int> channels, ListenPhase phase) =>
+        /// Listen to multiple channels, but do not receive broadcasts.
+        public static ListenerConfig MultipleChannelsNoBroadcast(IEnumerable<int> channels, ListenPhase phase) =>
             new ListenerConfig(channels, false, phase);
+
+        /// Listen to a single channel, and receive broadcasts.
+        public static ListenerConfig SingleChannelAndBroadcast(int channel, ListenPhase phase) =>
+            new ListenerConfig(channel, true, phase);
+
+        /// Listen to a single channel, but do not receive broadcasts.
+        public static ListenerConfig SingleChannelNoBroadcast(int channel, ListenPhase phase) =>
+            new ListenerConfig(channel, false, phase);
 
         /// Do not listen to any channels, but receive broadcasts.
         public static ListenerConfig BroadcastOnly(ListenPhase phase) =>
@@ -33,6 +41,11 @@ namespace Eflatun.EventBus
             Channels = channels;
             ReceiveBroadcasts = receiveBroadcasts;
             Phase = phase;
+        }
+
+        public ListenerConfig(int channel, bool receiveBroadcasts, ListenPhase phase) : this(new[] {channel},
+            receiveBroadcasts, phase)
+        {
         }
     }
 }
