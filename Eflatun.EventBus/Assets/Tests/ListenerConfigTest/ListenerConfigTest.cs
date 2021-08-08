@@ -10,61 +10,71 @@ namespace Eflatun.EventBus.Dev.Tests.ListenerConfigTest
         {
             var eb = new EventBus<EventFoo>();
 
-            var l1Count = 0;
-            var l1Config = ListenerConfig.AllChannelsAndBroadcast(ListenPhase.Regular);
-            EventHandler<EventFoo> l1 = (metadata, @event) => { l1Count++; };
-            eb.AddListener(l1Config, l1);
+            var lABCount = 0;
+            var lABConfig = ListenerConfig.AllChannelsAndBroadcast(ListenPhase.Regular);
+            EventHandler<EventFoo> lAB = (metadata, @event) => { lABCount++; };
+            eb.AddListener(lABConfig, lAB);
 
-            var l2Count = 0;
-            var l2Config = ListenerConfig.BroadcastOnly(ListenPhase.Regular);
-            EventHandler<EventFoo> l2 = (metadata, @event) => { l2Count++; };
-            eb.AddListener(l2Config, l2);
+            var lBCount = 0;
+            var lBConfig = ListenerConfig.BroadcastOnly(ListenPhase.Regular);
+            EventHandler<EventFoo> lB = (metadata, @event) => { lBCount++; };
+            eb.AddListener(lBConfig, lB);
 
-            var l3Count = 0;
-            var l3Config = ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
-            EventHandler<EventFoo> l3 = (metadata, @event) => { l3Count++; };
-            eb.AddListener(l3Config, l3);
+            var lACount = 0;
+            var lAConfig = ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
+            EventHandler<EventFoo> lA = (metadata, @event) => { lACount++; };
+            eb.AddListener(lAConfig, lA);
 
-            var l4sCount = 0;
-            var l4sConfig = ListenerConfig.SingleChannelAndBroadcast(0, ListenPhase.Regular);
-            EventHandler<EventFoo> l4s = (metadata, @event) => { l4sCount++; };
-            eb.AddListener(l4sConfig, l4s);
+            var l0BsCount = 0;
+            var l0BsConfig = ListenerConfig.SingleChannelAndBroadcast(0, ListenPhase.Regular);
+            EventHandler<EventFoo> l0Bs = (metadata, @event) => { l0BsCount++; };
+            eb.AddListener(l0BsConfig, l0Bs);
 
-            var l4mCount = 0;
-            var l4mConfig =
+            var l0BmCount = 0;
+            var l0BmConfig =
                 ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
-            EventHandler<EventFoo> l4m = (metadata, @event) => { l4mCount++; };
-            eb.AddListener(l4mConfig, l4m);
+            EventHandler<EventFoo> l0Bm = (metadata, @event) => { l0BmCount++; };
+            eb.AddListener(l0BmConfig, l0Bm);
 
-            var l5sCount = 0;
-            var l5sConfig = ListenerConfig.SingleChannelNoBroadcast(0, ListenPhase.Regular);
-            EventHandler<EventFoo> l5s = (metadata, @event) => { l5sCount++; };
-            eb.AddListener(l5sConfig, l5s);
+            var l0sCount = 0;
+            var l0sConfig = ListenerConfig.SingleChannelNoBroadcast(0, ListenPhase.Regular);
+            EventHandler<EventFoo> l0s = (metadata, @event) => { l0sCount++; };
+            eb.AddListener(l0sConfig, l0s);
 
-            var l5mCount = 0;
-            var l5mConfig = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
-            EventHandler<EventFoo> l5m = (metadata, @event) => { l5mCount++; };
-            eb.AddListener(l5mConfig, l5m);
+            var l0mCount = 0;
+            var l0mConfig = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
+            EventHandler<EventFoo> l0m = (metadata, @event) => { l0mCount++; };
+            eb.AddListener(l0mConfig, l0m);
 
-            // E1
+            // EB
             eb.Broadcast(null, new EventFoo());
-            Assert.AreEqual(l1Count, 1);
-            Assert.AreEqual(l2Count, 1);
-            Assert.AreEqual(l3Count, 0);
-            Assert.AreEqual(l4sCount, 1);
-            Assert.AreEqual(l4mCount, 1);
-            Assert.AreEqual(l5sCount, 0);
-            Assert.AreEqual(l5mCount, 0);
+            Assert.AreEqual(lABCount, 1);
+            Assert.AreEqual(lBCount, 1);
+            Assert.AreEqual(lACount, 0);
+            Assert.AreEqual(l0BsCount, 1);
+            Assert.AreEqual(l0BmCount, 1);
+            Assert.AreEqual(l0sCount, 0);
+            Assert.AreEqual(l0mCount, 0);
 
-            // E2
+            // E0
             eb.Emit(0, null, new EventFoo());
-            Assert.AreEqual(l1Count, 2);
-            Assert.AreEqual(l2Count, 1);
-            Assert.AreEqual(l3Count, 1);
-            Assert.AreEqual(l4sCount, 2);
-            Assert.AreEqual(l4mCount, 2);
-            Assert.AreEqual(l5sCount, 1);
-            Assert.AreEqual(l5mCount, 1);
+            Assert.AreEqual(lABCount, 2);
+            Assert.AreEqual(lBCount, 1);
+            Assert.AreEqual(lACount, 1);
+            Assert.AreEqual(l0BsCount, 2);
+            Assert.AreEqual(l0BmCount, 2);
+            Assert.AreEqual(l0sCount, 1);
+            Assert.AreEqual(l0mCount, 1);
+
+            // E0B
+            eb.EmitAndBroadcast(0, null, new EventFoo());
+            Assert.AreEqual(lABCount, 3);
+            Assert.AreEqual(lBCount, 2);
+            Assert.AreEqual(lACount, 2);
+            Assert.AreEqual(l0BsCount, 3);
+            Assert.AreEqual(l0BmCount, 3);
+            Assert.AreEqual(l0sCount, 2);
+            Assert.AreEqual(l0mCount, 2);
         }
     }
 }

@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
 {
-    public class L1 : MonoBehaviour
+    public class L0Bm : MonoBehaviour
     {
         private EventBus<EventFoo> _eventBus;
         private ListenerConfig _listenerConfig;
@@ -11,7 +12,7 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
         [Inject]
         private void _Init(EventBus<EventFoo> eventBus)
         {
-            _listenerConfig = ListenerConfig.AllChannelsAndBroadcast(ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
             _eventBus = eventBus;
         }
 
@@ -27,7 +28,7 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
 
         private void OnEventA(EventMetadata metadata, EventFoo @event)
         {
-            Debug.Log($"{nameof(L1)} received {nameof(EventFoo)} from {metadata.Sender.GetType().Name}");
+            Debug.Log($"{metadata.Sender.GetType().Name}\t->\t{nameof(L0Bm)}");
         }
     }
 }

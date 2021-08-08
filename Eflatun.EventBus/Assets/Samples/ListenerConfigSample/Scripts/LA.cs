@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
 {
-    public class L2 : MonoBehaviour
+    public class LA : MonoBehaviour
     {
         private EventBus<EventFoo> _eventBus;
         private ListenerConfig _listenerConfig;
@@ -11,7 +11,7 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
         [Inject]
         private void _Init(EventBus<EventFoo> eventBus)
         {
-            _listenerConfig = ListenerConfig.BroadcastOnly(ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
             _eventBus = eventBus;
         }
 
@@ -27,7 +27,7 @@ namespace Eflatun.EventBus.Dev.Samples.ListenerConfigSample
 
         private void OnEventA(EventMetadata metadata, EventFoo @event)
         {
-            Debug.Log($"{nameof(L2)} received {nameof(EventFoo)} from {metadata.Sender.GetType().Name}");
+            Debug.Log($"{metadata.Sender.GetType().Name}\t->\t{nameof(LA)}");
         }
     }
 }

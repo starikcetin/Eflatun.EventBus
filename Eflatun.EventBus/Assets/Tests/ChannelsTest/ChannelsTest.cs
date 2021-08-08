@@ -210,6 +210,150 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lACount, 6);
             Assert.AreEqual(lABCount, 7);
             Assert.AreEqual(lBCount, 1);
+
+            // E0B
+            eb.EmitAndBroadcast(0, null, new EventFoo());
+            Assert.AreEqual(l0Count, 4);
+            Assert.AreEqual(l0BCount, 5);
+            Assert.AreEqual(l1Count, 3);
+            Assert.AreEqual(l1BCount, 5);
+            Assert.AreEqual(l2Count, 3);
+            Assert.AreEqual(l2BCount, 5);
+            Assert.AreEqual(l01Count, 6);
+            Assert.AreEqual(l01BCount, 7);
+            Assert.AreEqual(l02Count, 6);
+            Assert.AreEqual(l02BCount, 7);
+            Assert.AreEqual(l12Count, 5);
+            Assert.AreEqual(l12BCount, 7);
+            Assert.AreEqual(lACount, 7);
+            Assert.AreEqual(lABCount, 8);
+            Assert.AreEqual(lBCount, 2);
+
+            // E1B
+            eb.EmitAndBroadcast(1, null, new EventFoo());
+            Assert.AreEqual(l0Count, 4);
+            Assert.AreEqual(l0BCount, 6);
+            Assert.AreEqual(l1Count, 4);
+            Assert.AreEqual(l1BCount, 6);
+            Assert.AreEqual(l2Count, 3);
+            Assert.AreEqual(l2BCount, 6);
+            Assert.AreEqual(l01Count, 7);
+            Assert.AreEqual(l01BCount, 8);
+            Assert.AreEqual(l02Count, 6);
+            Assert.AreEqual(l02BCount, 8);
+            Assert.AreEqual(l12Count, 6);
+            Assert.AreEqual(l12BCount, 8);
+            Assert.AreEqual(lACount, 8);
+            Assert.AreEqual(lABCount, 9);
+            Assert.AreEqual(lBCount, 3);
+
+            // E2B
+            eb.EmitAndBroadcast(2, null, new EventFoo());
+            Assert.AreEqual(l0Count, 4);
+            Assert.AreEqual(l0BCount, 7);
+            Assert.AreEqual(l1Count, 4);
+            Assert.AreEqual(l1BCount, 7);
+            Assert.AreEqual(l2Count, 4);
+            Assert.AreEqual(l2BCount, 7);
+            Assert.AreEqual(l01Count, 7);
+            Assert.AreEqual(l01BCount, 9);
+            Assert.AreEqual(l02Count, 7);
+            Assert.AreEqual(l02BCount, 9);
+            Assert.AreEqual(l12Count, 7);
+            Assert.AreEqual(l12BCount, 9);
+            Assert.AreEqual(lACount, 9);
+            Assert.AreEqual(lABCount, 10);
+            Assert.AreEqual(lBCount, 4);
+
+            // E01B
+            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 1}), null, new EventFoo());
+            Assert.AreEqual(l0Count, 5);
+            Assert.AreEqual(l0BCount, 8);
+            Assert.AreEqual(l1Count, 5);
+            Assert.AreEqual(l1BCount, 8);
+            Assert.AreEqual(l2Count, 4);
+            Assert.AreEqual(l2BCount, 8);
+            Assert.AreEqual(l01Count, 8);
+            Assert.AreEqual(l01BCount, 10);
+            Assert.AreEqual(l02Count, 8);
+            Assert.AreEqual(l02BCount, 10);
+            Assert.AreEqual(l12Count, 8);
+            Assert.AreEqual(l12BCount, 10);
+            Assert.AreEqual(lACount, 10);
+            Assert.AreEqual(lABCount, 11);
+            Assert.AreEqual(lBCount, 5);
+
+            // E02B
+            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 2}), null, new EventFoo());
+            Assert.AreEqual(l0Count, 6);
+            Assert.AreEqual(l0BCount, 9);
+            Assert.AreEqual(l1Count, 5);
+            Assert.AreEqual(l1BCount, 9);
+            Assert.AreEqual(l2Count, 5);
+            Assert.AreEqual(l2BCount, 9);
+            Assert.AreEqual(l01Count, 9);
+            Assert.AreEqual(l01BCount, 11);
+            Assert.AreEqual(l02Count, 9);
+            Assert.AreEqual(l02BCount, 11);
+            Assert.AreEqual(l12Count, 9);
+            Assert.AreEqual(l12BCount, 11);
+            Assert.AreEqual(lACount, 11);
+            Assert.AreEqual(lABCount, 12);
+            Assert.AreEqual(lBCount, 6);
+
+            // E12B
+            eb.EmitAndBroadcast(new HashSet<int>(new [] {1, 2}), null, new EventFoo());
+            Assert.AreEqual(l0Count, 6);
+            Assert.AreEqual(l0BCount, 10);
+            Assert.AreEqual(l1Count, 6);
+            Assert.AreEqual(l1BCount, 10);
+            Assert.AreEqual(l2Count, 6);
+            Assert.AreEqual(l2BCount, 10);
+            Assert.AreEqual(l01Count, 10);
+            Assert.AreEqual(l01BCount, 12);
+            Assert.AreEqual(l02Count, 10);
+            Assert.AreEqual(l02BCount, 12);
+            Assert.AreEqual(l12Count, 10);
+            Assert.AreEqual(l12BCount, 12);
+            Assert.AreEqual(lACount, 12);
+            Assert.AreEqual(lABCount, 13);
+            Assert.AreEqual(lBCount, 7);
+
+            // E012
+            eb.Emit(new HashSet<int>(new [] {0, 1, 2}), null, new EventFoo());
+            Assert.AreEqual(l0Count, 7);
+            Assert.AreEqual(l0BCount, 11);
+            Assert.AreEqual(l1Count, 7);
+            Assert.AreEqual(l1BCount, 11);
+            Assert.AreEqual(l2Count, 7);
+            Assert.AreEqual(l2BCount, 11);
+            Assert.AreEqual(l01Count, 11);
+            Assert.AreEqual(l01BCount, 13);
+            Assert.AreEqual(l02Count, 11);
+            Assert.AreEqual(l02BCount, 13);
+            Assert.AreEqual(l12Count, 11);
+            Assert.AreEqual(l12BCount, 13);
+            Assert.AreEqual(lACount, 13);
+            Assert.AreEqual(lABCount, 14);
+            Assert.AreEqual(lBCount, 7);
+
+            // E012B
+            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 1, 2}), null, new EventFoo());
+            Assert.AreEqual(l0Count, 8);
+            Assert.AreEqual(l0BCount, 12);
+            Assert.AreEqual(l1Count, 8);
+            Assert.AreEqual(l1BCount, 12);
+            Assert.AreEqual(l2Count, 8);
+            Assert.AreEqual(l2BCount, 12);
+            Assert.AreEqual(l01Count, 12);
+            Assert.AreEqual(l01BCount, 14);
+            Assert.AreEqual(l02Count, 12);
+            Assert.AreEqual(l02BCount, 14);
+            Assert.AreEqual(l12Count, 12);
+            Assert.AreEqual(l12BCount, 14);
+            Assert.AreEqual(lACount, 14);
+            Assert.AreEqual(lABCount, 15);
+            Assert.AreEqual(lBCount, 8);
         }
     }
 }

@@ -28,9 +28,19 @@ namespace Eflatun.EventBus
 
         public void Emit(int channel, object sender, TEvent @event)
         {
-            _phaseContexts[ListenPhase.Before].Emit(channel, sender, @event);
-            _phaseContexts[ListenPhase.Regular].Emit(channel, sender, @event);
-            _phaseContexts[ListenPhase.After].Emit(channel, sender, @event);
+            Emit(channel.ToHashSet(), sender, @event);
+        }
+
+        public void EmitAndBroadcast(ISet<int> channels, object sender, TEvent @event)
+        {
+            _phaseContexts[ListenPhase.Before].EmitAndBroadcast(channels, sender, @event);
+            _phaseContexts[ListenPhase.Regular].EmitAndBroadcast(channels, sender, @event);
+            _phaseContexts[ListenPhase.After].EmitAndBroadcast(channels, sender, @event);
+        }
+
+        public void EmitAndBroadcast(int channel, object sender, TEvent @event)
+        {
+            EmitAndBroadcast(channel.ToHashSet(), sender, @event);
         }
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)

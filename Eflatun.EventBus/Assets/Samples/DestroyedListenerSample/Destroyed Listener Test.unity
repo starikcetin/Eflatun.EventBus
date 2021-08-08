@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404b0dadf714311befcfb838d449eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &540692710
+--- !u!1 &325775609
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,11 +291,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 540692715}
-  - component: {fileID: 540692714}
-  - component: {fileID: 540692713}
-  - component: {fileID: 540692712}
-  - component: {fileID: 540692711}
+  - component: {fileID: 325775617}
+  - component: {fileID: 325775616}
+  - component: {fileID: 325775615}
+  - component: {fileID: 325775614}
+  - component: {fileID: 325775613}
+  - component: {fileID: 325775612}
+  - component: {fileID: 325775611}
+  - component: {fileID: 325775610}
   m_Layer: 0
   m_Name: Emitters
   m_TagString: Untagged
@@ -303,61 +306,97 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &540692711
+--- !u!114 &325775610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540692710}
+  m_GameObject: {fileID: 325775609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172bc90b22594196b7417bce064d3dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &540692712
+--- !u!114 &325775611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540692710}
+  m_GameObject: {fileID: 325775609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30977e76addd44c8a9bf2ddcd2dfa86f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &325775612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325775609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20424828e6b740d39505489edb1d2323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &325775613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325775609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b77e10438e34e538786e980d49ac609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &540692713
+--- !u!114 &325775614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540692710}
+  m_GameObject: {fileID: 325775609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 126a7118bccb4e818a8f5a6e6d8db717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &540692714
+--- !u!114 &325775615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540692710}
+  m_GameObject: {fileID: 325775609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45aa7ee03b54120aafd035c06653ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &325775616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325775609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 912bd27b277e4be2b3b7128aee5a707b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &540692715
+--- !u!4 &325775617
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540692710}
+  m_GameObject: {fileID: 325775609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
