@@ -4,13 +4,13 @@ namespace Eflatun.EventBus
 {
     public class PhaseContext<TEvent> where TEvent : IEvent
     {
-        private readonly ISet<EventHandler<TEvent>> _combineSet = new HashSet<EventHandler<TEvent>>();
+        private readonly HashSetList<EventHandler<TEvent>> _combineSet = new HashSetList<EventHandler<TEvent>>();
 
-        private readonly ISet<EventHandler<TEvent>> _broadcastListeners = new HashSet<EventHandler<TEvent>>();
-        private readonly ISet<EventHandler<TEvent>> _allChannelsListeners = new HashSet<EventHandler<TEvent>>();
+        private readonly HashSetList<EventHandler<TEvent>> _broadcastListeners = new HashSetList<EventHandler<TEvent>>();
+        private readonly HashSetList<EventHandler<TEvent>> _allChannelsListeners = new HashSetList<EventHandler<TEvent>>();
 
-        private readonly IDictionary<int, ISet<EventHandler<TEvent>>> _channelListeners =
-            new Dictionary<int, ISet<EventHandler<TEvent>>>();
+        private readonly Dictionary<int, HashSetList<EventHandler<TEvent>>> _channelListeners =
+            new Dictionary<int, HashSetList<EventHandler<TEvent>>>();
 
         public void Broadcast(object sender, TEvent @event)
         {
@@ -69,7 +69,7 @@ namespace Eflatun.EventBus
         {
             if (!_channelListeners.ContainsKey(channel))
             {
-                _channelListeners.Add(channel, new HashSet<EventHandler<TEvent>>());
+                _channelListeners.Add(channel, new HashSetList<EventHandler<TEvent>>());
             }
         }
 
