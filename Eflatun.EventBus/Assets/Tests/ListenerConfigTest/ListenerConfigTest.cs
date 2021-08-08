@@ -32,7 +32,7 @@ namespace Eflatun.EventBus.Dev.Tests.ListenerConfigTest
 
             var l0BmCount = 0;
             var l0BmConfig =
-                ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
+                ListenerConfig.MultipleChannelsAndBroadcast(new[] {0}, ListenPhase.Regular);
             EventHandler<EventFoo> l0Bm = (metadata, @event) => { l0BmCount++; };
             eb.AddListener(l0BmConfig, l0Bm);
 
@@ -42,7 +42,7 @@ namespace Eflatun.EventBus.Dev.Tests.ListenerConfigTest
             eb.AddListener(l0sConfig, l0s);
 
             var l0mCount = 0;
-            var l0mConfig = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new[] {0}), ListenPhase.Regular);
+            var l0mConfig = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0}, ListenPhase.Regular);
             EventHandler<EventFoo> l0m = (metadata, @event) => { l0mCount++; };
             eb.AddListener(l0mConfig, l0m);
 

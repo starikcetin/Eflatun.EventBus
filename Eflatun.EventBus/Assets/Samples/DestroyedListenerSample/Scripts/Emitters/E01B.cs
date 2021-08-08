@@ -20,7 +20,7 @@ namespace Eflatun.EventBus.Dev.Samples.DestroyedListenerSample
             yield return new WaitForSeconds(2);
 
             Debug.Log($"------ Start of {nameof(E01B)} ------");
-            _eventBus.EmitAndBroadcast(new HashSet<int>(new[] {0, 1}), this, new EventFoo());
+            _eventBus.EmitAndBroadcast(stackalloc[] {0, 1}, this, new EventFoo());
         }
     }
 }

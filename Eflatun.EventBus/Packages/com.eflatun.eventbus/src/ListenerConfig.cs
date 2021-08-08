@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Eflatun.EventBus
 {
-    public class ListenerConfig
+    public readonly struct ListenerConfig
     {
-        // TODO: Use IReadOnlySet for all channel sets when Unity gets the .Net 5 update
-
-        private static readonly ISet<int> EmptyChannelSet = new HashSet<int>();
-
         /// Listen to all channels, and receive broadcasts.
         public static ListenerConfig AllChannelsAndBroadcast(ListenPhase phase) =>
             new ListenerConfig(true, true, phase);
@@ -17,11 +14,11 @@ namespace Eflatun.EventBus
             new ListenerConfig(true, false, phase);
 
         /// Listen to multiple channels, and receive broadcasts.
-        public static ListenerConfig MultipleChannelsAndBroadcast(ISet<int> channels, ListenPhase phase) =>
+        public static ListenerConfig MultipleChannelsAndBroadcast(int[] channels, ListenPhase phase) =>
             new ListenerConfig(channels, true, phase);
 
         /// Listen to multiple channels, but do not receive broadcasts.
-        public static ListenerConfig MultipleChannelsNoBroadcast(ISet<int> channels, ListenPhase phase) =>
+        public static ListenerConfig MultipleChannelsNoBroadcast(int[] channels, ListenPhase phase) =>
             new ListenerConfig(channels, false, phase);
 
         /// Listen to a single channel, and receive broadcasts.
@@ -36,20 +33,20 @@ namespace Eflatun.EventBus
         public static ListenerConfig BroadcastOnly(ListenPhase phase) =>
             new ListenerConfig(false, true, phase);
 
-        public ISet<int> SpecificChannels { get; }
+        public int[] SpecificChannels { get; }
         public bool ListeningToAllChannels { get; }
         public bool ReceivingBroadcasts { get; }
         public ListenPhase Phase { get; }
 
         public ListenerConfig(bool listenToAllChannels, bool receiveBroadcasts, ListenPhase phase)
         {
-            SpecificChannels = EmptyChannelSet;
+            SpecificChannels = Array.Empty<int>();
             ListeningToAllChannels = listenToAllChannels;
             ReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;
         }
 
-        public ListenerConfig(ISet<int> channels, bool receiveBroadcasts, ListenPhase phase)
+        public ListenerConfig(int[] channels, bool receiveBroadcasts, ListenPhase phase)
         {
             SpecificChannels = channels;
             ListeningToAllChannels = false;
@@ -59,7 +56,7 @@ namespace Eflatun.EventBus
 
         public ListenerConfig(int channel, bool receiveBroadcasts, ListenPhase phase)
         {
-            SpecificChannels = new HashSet<int>(new[] {channel});
+            SpecificChannels = new[] {channel};
             ListeningToAllChannels = false;
             ReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;

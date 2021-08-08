@@ -12,7 +12,7 @@ namespace Eflatun.EventBus.Dev.Samples.ChannelsSample
         [Inject]
         private void _Init(EventBus<EventFoo> eventBus)
         {
-            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new []{ 1, 2 }), ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {1, 2}, ListenPhase.Regular);
             _eventBus = eventBus;
         }
 

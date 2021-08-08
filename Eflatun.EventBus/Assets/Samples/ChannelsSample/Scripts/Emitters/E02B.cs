@@ -17,7 +17,7 @@ namespace Eflatun.EventBus.Dev.Samples.ChannelsSample
         private void Start()
         {
             Debug.Log($"------ Start of {nameof(E02B)} ------");
-            _eventBus.EmitAndBroadcast(new HashSet<int>(new[] {0, 2}), this, new EventFoo());
+            _eventBus.EmitAndBroadcast(stackalloc[] {0, 2}, this, new EventFoo());
         }
     }
 }

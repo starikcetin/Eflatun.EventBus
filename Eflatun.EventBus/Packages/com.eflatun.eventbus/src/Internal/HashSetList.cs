@@ -1,24 +1,22 @@
 ﻿using System.Collections.Generic;
 
-namespace Eflatun.EventBus
+namespace Eflatun.EventBus.Internal
 {
-    public class HashSetList<T> : HashSet<T>, IReadOnlyList<T>
+    internal class HashSetList<T> : HashSet<T>, IReadOnlyList<T>
     {
-        private List<T> _elmList = new List<T>();
+        private readonly List<T> _elmList = new List<T>();
 
         public void UnionWith(HashSetList<T> other)
         {
             for (var i = 0; i < other._elmList.Count; i++)
             {
-                var otherItem = other._elmList[i];
-                Add(otherItem);
+                Add(other._elmList[i]);
             }
         }
 
         public new void Add(T item)
         {
-            var added = base.Add(item);
-            if (added)
+            if (base.Add(item))
             {
                 _elmList.Add(item);
             }
@@ -26,8 +24,7 @@ namespace Eflatun.EventBus
 
         public new void Remove(T item)
         {
-            var removed = base.Remove(item);
-            if (removed)
+            if (base.Remove(item))
             {
                 _elmList.Remove(item);
             }

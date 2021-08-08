@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Eflatun.EventBus
 {
@@ -19,7 +20,7 @@ namespace Eflatun.EventBus
             _phaseContexts[ListenPhase.After].Broadcast(sender, @event);
         }
 
-        public void Emit(ISet<int> channels, object sender, TEvent @event)
+        public void Emit(Span<int> channels, object sender, TEvent @event)
         {
             _phaseContexts[ListenPhase.Before].Emit(channels, sender, @event);
             _phaseContexts[ListenPhase.Regular].Emit(channels, sender, @event);
@@ -28,10 +29,10 @@ namespace Eflatun.EventBus
 
         public void Emit(int channel, object sender, TEvent @event)
         {
-            Emit(channel.ToHashSet(), sender, @event);
+            Emit(stackalloc []{channel}, sender, @event);
         }
 
-        public void EmitAndBroadcast(ISet<int> channels, object sender, TEvent @event)
+        public void EmitAndBroadcast(Span<int> channels, object sender, TEvent @event)
         {
             _phaseContexts[ListenPhase.Before].EmitAndBroadcast(channels, sender, @event);
             _phaseContexts[ListenPhase.Regular].EmitAndBroadcast(channels, sender, @event);
@@ -40,7 +41,7 @@ namespace Eflatun.EventBus
 
         public void EmitAndBroadcast(int channel, object sender, TEvent @event)
         {
-            EmitAndBroadcast(channel.ToHashSet(), sender, @event);
+            EmitAndBroadcast(stackalloc []{channel}, sender, @event);
         }
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)

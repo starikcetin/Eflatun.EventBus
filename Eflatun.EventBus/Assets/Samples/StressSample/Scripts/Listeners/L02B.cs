@@ -13,7 +13,7 @@ namespace Eflatun.EventBus.Dev.Samples.StressSample.Scripts.Listeners
         [Inject]
         private void _Init(EventBus<EventFoo> eventBus)
         {
-            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new []{ 0, 2 }), ListenPhase.Regular);
+            _listenerConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0, 2}, ListenPhase.Regular);
             _eventBus = eventBus;
         }
 

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Eflatun.EventBus.Internal;
 
 namespace Eflatun.EventBus
 {
@@ -14,15 +16,15 @@ namespace Eflatun.EventBus
 
         public void Broadcast(object sender, TEvent @event)
         {
-            CombineAndSend(sender, @event, Utils.EmptyIntSet, false, true);
+            CombineAndSend(sender, @event, Array.Empty<int>(), false, true);
         }
 
-        public void Emit(ISet<int> channels, object sender, TEvent @event)
+        public void Emit(Span<int> channels, object sender, TEvent @event)
         {
             CombineAndSend(sender, @event, channels, true, false);
         }
 
-        public void EmitAndBroadcast(ISet<int> channels, object sender, TEvent @event)
+        public void EmitAndBroadcast(Span<int> channels, object sender, TEvent @event)
         {
             CombineAndSend(sender, @event, channels, true, true);
         }
@@ -73,7 +75,7 @@ namespace Eflatun.EventBus
             }
         }
 
-        private void CombineAndSend(object sender, TEvent @event, ISet<int> channels, bool includeAllChannels, bool includeBroadcast)
+        private void CombineAndSend(object sender, TEvent @event, Span<int> channels, bool includeAllChannels, bool includeBroadcast)
         {
             var metadata = new EventMetadata(channels, sender, false);
 
