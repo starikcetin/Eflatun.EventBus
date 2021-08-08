@@ -1,0 +1,18 @@
+{
+    "name": "Samples",
+    "rootNamespace": "Eflatun.EventBus.Dev.Samples",
+    "references": [
+        "GUID:8aff242bfe367df43a649269f99998e2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        ""
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
