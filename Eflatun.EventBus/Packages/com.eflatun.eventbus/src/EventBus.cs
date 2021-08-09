@@ -46,12 +46,12 @@ namespace Eflatun.EventBus
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            _phaseContexts[config.Phase].AddListener(config, listener);
+            _phaseContexts[config.Phase].AddListener(config, new HashCachedEventHandler<TEvent>(listener));
         }
 
         public void RemoveListener(ListenerConfig config, EventHandler<TEvent> listener)
         {
-            _phaseContexts[config.Phase].RemoveListener(config, listener);
+            _phaseContexts[config.Phase].RemoveListener(config, new HashCachedEventHandler<TEvent>(listener));
         }
     }
 }
