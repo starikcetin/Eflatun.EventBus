@@ -16,17 +16,86 @@ namespace Eflatun.EventBus
 
         public void Broadcast(object sender, TEvent @event)
         {
-            CombineAndSend(sender, @event, Array.Empty<int>(), false, true);
+            var metadata = new EventMetadata(stackalloc int[0], sender, false);
+
+            foreach (var listener in _broadcastListeners)
+            {
+                listener.EventHandler.Invoke(metadata, @event);
+            }
         }
 
-        public void Emit(Span<int> channels, object sender, TEvent @event)
+        public void Emit(int channel, object sender, TEvent @event)
         {
-            CombineAndSend(sender, @event, channels, true, false);
+            var metadata = new EventMetadata(stackalloc[] {channel}, sender, false);
+
+            _combineSet.UnionWith(_allChannelsListeners);
+            EnsureChannelListenerList(channel);
+            _combineSet.UnionWith(_channelListeners[channel]);
+
+            foreach (var listener in _combineSet)
+            {
+                listener.EventHandler.Invoke(metadata, @event);
+            }
+
+            _combineSet.Clear();
         }
 
-        public void EmitAndBroadcast(Span<int> channels, object sender, TEvent @event)
+        public void Emit(ReadOnlySpan<int> channels, object sender, TEvent @event)
         {
-            CombineAndSend(sender, @event, channels, true, true);
+            var metadata = new EventMetadata(channels, sender, false);
+
+            _combineSet.UnionWith(_allChannelsListeners);
+
+            foreach (var channel in channels)
+            {
+                EnsureChannelListenerList(channel);
+                _combineSet.UnionWith(_channelListeners[channel]);
+            }
+
+            foreach (var listener in _combineSet)
+            {
+                listener.EventHandler.Invoke(metadata, @event);
+            }
+
+            _combineSet.Clear();
+        }
+
+        public void EmitAndBroadcast(ReadOnlySpan<int> channels, object sender, TEvent @event)
+        {
+            var metadata = new EventMetadata(channels, sender, false);
+
+            _combineSet.UnionWith(_allChannelsListeners);
+            _combineSet.UnionWith(_broadcastListeners);
+
+            foreach (var channel in channels)
+            {
+                EnsureChannelListenerList(channel);
+                _combineSet.UnionWith(_channelListeners[channel]);
+            }
+
+            foreach (var listener in _combineSet)
+            {
+                listener.EventHandler.Invoke(metadata, @event);
+            }
+
+            _combineSet.Clear();
+        }
+
+        public void EmitAndBroadcast(int channel, object sender, TEvent @event)
+        {
+            var metadata = new EventMetadata(stackalloc[] {channel}, sender, false);
+
+            _combineSet.UnionWith(_allChannelsListeners);
+            _combineSet.UnionWith(_broadcastListeners);
+            EnsureChannelListenerList(channel);
+            _combineSet.UnionWith(_channelListeners[channel]);
+
+            foreach (var listener in _combineSet)
+            {
+                listener.EventHandler.Invoke(metadata, @event);
+            }
+
+            _combineSet.Clear();
         }
 
         public void AddListener(ListenerConfig config, HashCachedEventHandler<TEvent> listener)
@@ -73,37 +142,6 @@ namespace Eflatun.EventBus
             {
                 _channelListeners.Add(channel, new HashSetList<HashCachedEventHandler<TEvent>>());
             }
-        }
-
-        private void CombineAndSend(object sender, TEvent @event, Span<int> channels, bool includeAllChannels, bool includeBroadcast)
-        {
-            var metadata = new EventMetadata(channels, sender, false);
-
-            // collect all relevant listeners into combineSet
-            if (includeAllChannels)
-            {
-                _combineSet.UnionWith(_allChannelsListeners);
-            }
-
-            if (includeBroadcast)
-            {
-                _combineSet.UnionWith(_broadcastListeners);
-            }
-
-            foreach (var channel in channels)
-            {
-                EnsureChannelListenerList(channel);
-                _combineSet.UnionWith(_channelListeners[channel]);
-            }
-
-            // invoke the listeners in combineSet
-            foreach (var listener in _combineSet)
-            {
-                listener.EventHandler.Invoke(metadata, @event);
-            }
-
-            // clear combineSet
-            _combineSet.Clear();
         }
     }
 }

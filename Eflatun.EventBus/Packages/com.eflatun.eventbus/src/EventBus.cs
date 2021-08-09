@@ -20,7 +20,7 @@ namespace Eflatun.EventBus
             _phaseContexts[ListenPhase.After].Broadcast(sender, @event);
         }
 
-        public void Emit(Span<int> channels, object sender, TEvent @event)
+        public void Emit(ReadOnlySpan<int> channels, object sender, TEvent @event)
         {
             _phaseContexts[ListenPhase.Before].Emit(channels, sender, @event);
             _phaseContexts[ListenPhase.Regular].Emit(channels, sender, @event);
@@ -29,10 +29,12 @@ namespace Eflatun.EventBus
 
         public void Emit(int channel, object sender, TEvent @event)
         {
-            Emit(stackalloc []{channel}, sender, @event);
+            _phaseContexts[ListenPhase.Before].Emit(channel, sender, @event);
+            _phaseContexts[ListenPhase.Regular].Emit(channel, sender, @event);
+            _phaseContexts[ListenPhase.After].Emit(channel, sender, @event);
         }
 
-        public void EmitAndBroadcast(Span<int> channels, object sender, TEvent @event)
+        public void EmitAndBroadcast(ReadOnlySpan<int> channels, object sender, TEvent @event)
         {
             _phaseContexts[ListenPhase.Before].EmitAndBroadcast(channels, sender, @event);
             _phaseContexts[ListenPhase.Regular].EmitAndBroadcast(channels, sender, @event);
@@ -41,7 +43,9 @@ namespace Eflatun.EventBus
 
         public void EmitAndBroadcast(int channel, object sender, TEvent @event)
         {
-            EmitAndBroadcast(stackalloc []{channel}, sender, @event);
+            _phaseContexts[ListenPhase.Before].EmitAndBroadcast(channel, sender, @event);
+            _phaseContexts[ListenPhase.Regular].EmitAndBroadcast(channel, sender, @event);
+            _phaseContexts[ListenPhase.After].EmitAndBroadcast(channel, sender, @event);
         }
 
         public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
