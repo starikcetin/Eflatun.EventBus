@@ -16,7 +16,7 @@ namespace Eflatun.EventBus.Dev.Samples.StressSample.Scripts.Emitters
 
         private void Update()
         {
-            _eventBus.Emit(new HashSet<int>(new[] {0, 1}), this, new EventFoo());
+            _eventBus.Emit(stackalloc[] {0, 1}, this, new EventFoo());
         }
     }
 }

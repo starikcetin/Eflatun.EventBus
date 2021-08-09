@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -41,32 +42,32 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             eb.AddListener(l2BConfig, l2B);
 
             var l01Count = 0;
-            var l01Config = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new [] {0, 1}), ListenPhase.Regular);
+            var l01Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0, 1}, ListenPhase.Regular);
             EventHandler<EventFoo> l01 = (metadata, @event) => { l01Count++; };
             eb.AddListener(l01Config, l01);
 
             var l01BCount = 0;
-            var l01BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new [] {0, 1}), ListenPhase.Regular);
+            var l01BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0, 1}, ListenPhase.Regular);
             EventHandler<EventFoo> l01B = (metadata, @event) => { l01BCount++; };
             eb.AddListener(l01BConfig, l01B);
 
             var l02Count = 0;
-            var l02Config = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new [] {0, 2}), ListenPhase.Regular);
+            var l02Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0, 2}, ListenPhase.Regular);
             EventHandler<EventFoo> l02 = (metadata, @event) => { l02Count++; };
             eb.AddListener(l02Config, l02);
 
             var l02BCount = 0;
-            var l02BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new [] {0, 2}), ListenPhase.Regular);
+            var l02BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0, 2}, ListenPhase.Regular);
             EventHandler<EventFoo> l02B = (metadata, @event) => { l02BCount++; };
             eb.AddListener(l02BConfig, l02B);
 
             var l12Count = 0;
-            var l12Config = ListenerConfig.MultipleChannelsNoBroadcast(new HashSet<int>(new [] {1, 2}), ListenPhase.Regular);
+            var l12Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {1, 2}, ListenPhase.Regular);
             EventHandler<EventFoo> l12 = (metadata, @event) => { l12Count++; };
             eb.AddListener(l12Config, l12);
 
             var l12BCount = 0;
-            var l12BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new HashSet<int>(new [] {1, 2}), ListenPhase.Regular);
+            var l12BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {1, 2}, ListenPhase.Regular);
             EventHandler<EventFoo> l12B = (metadata, @event) => { l12BCount++; };
             eb.AddListener(l12BConfig, l12B);
 
@@ -140,7 +141,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 0);
 
             // E01
-            eb.Emit(new HashSet<int>(new [] {0, 1}), null, new EventFoo());
+            eb.Emit(stackalloc[] {0, 1}, null, new EventFoo());
             Assert.AreEqual(l0Count, 2);
             Assert.AreEqual(l0BCount, 2);
             Assert.AreEqual(l1Count, 2);
@@ -158,7 +159,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 0);
 
             // E02
-            eb.Emit(new HashSet<int>(new [] {0, 2}), null, new EventFoo());
+            eb.Emit(stackalloc[] {0, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 3);
             Assert.AreEqual(l0BCount, 3);
             Assert.AreEqual(l1Count, 2);
@@ -176,7 +177,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 0);
 
             // E12
-            eb.Emit(new HashSet<int>(new [] {1, 2}), null, new EventFoo());
+            eb.Emit(stackalloc[] {1, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 3);
             Assert.AreEqual(l0BCount, 3);
             Assert.AreEqual(l1Count, 3);
@@ -266,7 +267,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 4);
 
             // E01B
-            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 1}), null, new EventFoo());
+            eb.EmitAndBroadcast(stackalloc[] {0, 1}, null, new EventFoo());
             Assert.AreEqual(l0Count, 5);
             Assert.AreEqual(l0BCount, 8);
             Assert.AreEqual(l1Count, 5);
@@ -284,7 +285,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 5);
 
             // E02B
-            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 2}), null, new EventFoo());
+            eb.EmitAndBroadcast(stackalloc[] {0, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 6);
             Assert.AreEqual(l0BCount, 9);
             Assert.AreEqual(l1Count, 5);
@@ -302,7 +303,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 6);
 
             // E12B
-            eb.EmitAndBroadcast(new HashSet<int>(new [] {1, 2}), null, new EventFoo());
+            eb.EmitAndBroadcast(stackalloc[] {1, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 6);
             Assert.AreEqual(l0BCount, 10);
             Assert.AreEqual(l1Count, 6);
@@ -320,7 +321,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 7);
 
             // E012
-            eb.Emit(new HashSet<int>(new [] {0, 1, 2}), null, new EventFoo());
+            eb.Emit(stackalloc[] {0, 1, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 7);
             Assert.AreEqual(l0BCount, 11);
             Assert.AreEqual(l1Count, 7);
@@ -338,7 +339,7 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
             Assert.AreEqual(lBCount, 7);
 
             // E012B
-            eb.EmitAndBroadcast(new HashSet<int>(new [] {0, 1, 2}), null, new EventFoo());
+            eb.EmitAndBroadcast(stackalloc[] {0, 1, 2}, null, new EventFoo());
             Assert.AreEqual(l0Count, 8);
             Assert.AreEqual(l0BCount, 12);
             Assert.AreEqual(l1Count, 8);

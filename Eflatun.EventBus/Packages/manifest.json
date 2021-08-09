@@ -50,7 +50,8 @@
       "scopes": [
         "com.coffee.git-dependency-resolver",
         "com.openupm",
-        "com.svermeulen.extenject"
+        "com.svermeulen.extenject",
+		"org.nuget"
       ]
     }
   ]
