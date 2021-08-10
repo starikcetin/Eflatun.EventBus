@@ -48,14 +48,14 @@ namespace Eflatun.EventBus
             _phaseContexts[ListenPhase.After].EmitAndBroadcast(channel, sender, @event);
         }
 
-        public void AddListener(ListenerConfig config, EventHandler<TEvent> listener)
+        public void AddListener(ListenerConfig config, Listener<TEvent> listener)
         {
-            _phaseContexts[config.Phase].AddListener(config, new HashCachedEventHandler<TEvent>(listener));
+            _phaseContexts[config.Phase].AddListener(config, new HashCachedListener<TEvent>(listener));
         }
 
-        public void RemoveListener(ListenerConfig config, EventHandler<TEvent> listener)
+        public void RemoveListener(ListenerConfig config, Listener<TEvent> listener)
         {
-            _phaseContexts[config.Phase].RemoveListener(config, new HashCachedEventHandler<TEvent>(listener));
+            _phaseContexts[config.Phase].RemoveListener(config, new HashCachedListener<TEvent>(listener));
         }
     }
 }

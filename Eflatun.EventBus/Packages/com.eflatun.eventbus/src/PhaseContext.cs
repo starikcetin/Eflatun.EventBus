@@ -6,13 +6,13 @@ namespace Eflatun.EventBus
 {
     internal class PhaseContext<TEvent> where TEvent : IEvent
     {
-        private readonly HashSetList<HashCachedEventHandler<TEvent>> _combineSet = new HashSetList<HashCachedEventHandler<TEvent>>();
+        private readonly HashSetList<HashCachedListener<TEvent>> _combineSet = new HashSetList<HashCachedListener<TEvent>>();
 
-        private readonly HashSetList<HashCachedEventHandler<TEvent>> _broadcastListeners = new HashSetList<HashCachedEventHandler<TEvent>>();
-        private readonly HashSetList<HashCachedEventHandler<TEvent>> _allChannelsListeners = new HashSetList<HashCachedEventHandler<TEvent>>();
+        private readonly HashSetList<HashCachedListener<TEvent>> _broadcastListeners = new HashSetList<HashCachedListener<TEvent>>();
+        private readonly HashSetList<HashCachedListener<TEvent>> _allChannelsListeners = new HashSetList<HashCachedListener<TEvent>>();
 
-        private readonly Dictionary<int, HashSetList<HashCachedEventHandler<TEvent>>> _channelListeners =
-            new Dictionary<int, HashSetList<HashCachedEventHandler<TEvent>>>();
+        private readonly Dictionary<int, HashSetList<HashCachedListener<TEvent>>> _channelListeners =
+            new Dictionary<int, HashSetList<HashCachedListener<TEvent>>>();
 
         public void Broadcast(object sender, TEvent @event)
         {
@@ -20,7 +20,7 @@ namespace Eflatun.EventBus
 
             foreach (var listener in _broadcastListeners)
             {
-                listener.EventHandler.Invoke(metadata, @event);
+                listener.Listener.Invoke(metadata, @event);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Eflatun.EventBus
 
             foreach (var listener in _combineSet)
             {
-                listener.EventHandler.Invoke(metadata, @event);
+                listener.Listener.Invoke(metadata, @event);
             }
 
             _combineSet.Clear();
@@ -54,7 +54,7 @@ namespace Eflatun.EventBus
 
             foreach (var listener in _combineSet)
             {
-                listener.EventHandler.Invoke(metadata, @event);
+                listener.Listener.Invoke(metadata, @event);
             }
 
             _combineSet.Clear();
@@ -75,7 +75,7 @@ namespace Eflatun.EventBus
 
             foreach (var listener in _combineSet)
             {
-                listener.EventHandler.Invoke(metadata, @event);
+                listener.Listener.Invoke(metadata, @event);
             }
 
             _combineSet.Clear();
@@ -92,20 +92,20 @@ namespace Eflatun.EventBus
 
             foreach (var listener in _combineSet)
             {
-                listener.EventHandler.Invoke(metadata, @event);
+                listener.Listener.Invoke(metadata, @event);
             }
 
             _combineSet.Clear();
         }
 
-        public void AddListener(ListenerConfig config, HashCachedEventHandler<TEvent> listener)
+        public void AddListener(ListenerConfig config, HashCachedListener<TEvent> listener)
         {
-            if (config.ListeningToAllChannels)
+            if (config.IsListeningToAllChannels)
             {
                 _allChannelsListeners.Add(listener);
             }
 
-            if (config.ReceivingBroadcasts)
+            if (config.IsReceivingBroadcasts)
             {
                 _broadcastListeners.Add(listener);
             }
@@ -117,14 +117,14 @@ namespace Eflatun.EventBus
             }
         }
 
-        public void RemoveListener(ListenerConfig config, HashCachedEventHandler<TEvent> listener)
+        public void RemoveListener(ListenerConfig config, HashCachedListener<TEvent> listener)
         {
-            if (config.ListeningToAllChannels)
+            if (config.IsListeningToAllChannels)
             {
                 _allChannelsListeners.Remove(listener);
             }
 
-            if (config.ReceivingBroadcasts)
+            if (config.IsReceivingBroadcasts)
             {
                 _broadcastListeners.Remove(listener);
             }
@@ -140,7 +140,7 @@ namespace Eflatun.EventBus
         {
             if (!_channelListeners.ContainsKey(channel))
             {
-                _channelListeners.Add(channel, new HashSetList<HashCachedEventHandler<TEvent>>());
+                _channelListeners.Add(channel, new HashSetList<HashCachedListener<TEvent>>());
             }
         }
     }

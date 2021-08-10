@@ -34,31 +34,31 @@ namespace Eflatun.EventBus
             new ListenerConfig(false, true, phase);
 
         public int[] SpecificChannels { get; }
-        public bool ListeningToAllChannels { get; }
-        public bool ReceivingBroadcasts { get; }
+        public bool IsListeningToAllChannels { get; }
+        public bool IsReceivingBroadcasts { get; }
         public ListenPhase Phase { get; }
 
         public ListenerConfig(bool listenToAllChannels, bool receiveBroadcasts, ListenPhase phase)
         {
             SpecificChannels = Array.Empty<int>();
-            ListeningToAllChannels = listenToAllChannels;
-            ReceivingBroadcasts = receiveBroadcasts;
+            IsListeningToAllChannels = listenToAllChannels;
+            IsReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;
         }
 
         public ListenerConfig(int[] channels, bool receiveBroadcasts, ListenPhase phase)
         {
             SpecificChannels = channels;
-            ListeningToAllChannels = false;
-            ReceivingBroadcasts = receiveBroadcasts;
+            IsListeningToAllChannels = false;
+            IsReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;
         }
 
         public ListenerConfig(int channel, bool receiveBroadcasts, ListenPhase phase)
         {
             SpecificChannels = new[] {channel};
-            ListeningToAllChannels = false;
-            ReceivingBroadcasts = receiveBroadcasts;
+            IsListeningToAllChannels = false;
+            IsReceivingBroadcasts = receiveBroadcasts;
             Phase = phase;
         }
     }

@@ -13,77 +13,77 @@ namespace Eflatun.EventBus.Dev.Tests.ChannelsTest
 
             var l0Count = 0;
             var l0Config = ListenerConfig.SingleChannelNoBroadcast(0, ListenPhase.Regular);
-            EventHandler<EventFoo> l0 = (metadata, @event) => { l0Count++; };
+            Listener<EventFoo> l0 = (metadata, @event) => { l0Count++; };
             eb.AddListener(l0Config, l0);
 
             var l0BCount = 0;
             var l0BConfig = ListenerConfig.SingleChannelAndBroadcast(0, ListenPhase.Regular);
-            EventHandler<EventFoo> l0B = (metadata, @event) => { l0BCount++; };
+            Listener<EventFoo> l0B = (metadata, @event) => { l0BCount++; };
             eb.AddListener(l0BConfig, l0B);
 
             var l1Count = 0;
             var l1Config = ListenerConfig.SingleChannelNoBroadcast(1, ListenPhase.Regular);
-            EventHandler<EventFoo> l1 = (metadata, @event) => { l1Count++; };
+            Listener<EventFoo> l1 = (metadata, @event) => { l1Count++; };
             eb.AddListener(l1Config, l1);
 
             var l1BCount = 0;
             var l1BConfig = ListenerConfig.SingleChannelAndBroadcast(1, ListenPhase.Regular);
-            EventHandler<EventFoo> l1B = (metadata, @event) => { l1BCount++; };
+            Listener<EventFoo> l1B = (metadata, @event) => { l1BCount++; };
             eb.AddListener(l1BConfig, l1B);
 
             var l2Count = 0;
             var l2Config = ListenerConfig.SingleChannelNoBroadcast(2, ListenPhase.Regular);
-            EventHandler<EventFoo> l2 = (metadata, @event) => { l2Count++; };
+            Listener<EventFoo> l2 = (metadata, @event) => { l2Count++; };
             eb.AddListener(l2Config, l2);
 
             var l2BCount = 0;
             var l2BConfig = ListenerConfig.SingleChannelAndBroadcast(2, ListenPhase.Regular);
-            EventHandler<EventFoo> l2B = (metadata, @event) => { l2BCount++; };
+            Listener<EventFoo> l2B = (metadata, @event) => { l2BCount++; };
             eb.AddListener(l2BConfig, l2B);
 
             var l01Count = 0;
             var l01Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0, 1}, ListenPhase.Regular);
-            EventHandler<EventFoo> l01 = (metadata, @event) => { l01Count++; };
+            Listener<EventFoo> l01 = (metadata, @event) => { l01Count++; };
             eb.AddListener(l01Config, l01);
 
             var l01BCount = 0;
             var l01BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0, 1}, ListenPhase.Regular);
-            EventHandler<EventFoo> l01B = (metadata, @event) => { l01BCount++; };
+            Listener<EventFoo> l01B = (metadata, @event) => { l01BCount++; };
             eb.AddListener(l01BConfig, l01B);
 
             var l02Count = 0;
             var l02Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {0, 2}, ListenPhase.Regular);
-            EventHandler<EventFoo> l02 = (metadata, @event) => { l02Count++; };
+            Listener<EventFoo> l02 = (metadata, @event) => { l02Count++; };
             eb.AddListener(l02Config, l02);
 
             var l02BCount = 0;
             var l02BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {0, 2}, ListenPhase.Regular);
-            EventHandler<EventFoo> l02B = (metadata, @event) => { l02BCount++; };
+            Listener<EventFoo> l02B = (metadata, @event) => { l02BCount++; };
             eb.AddListener(l02BConfig, l02B);
 
             var l12Count = 0;
             var l12Config = ListenerConfig.MultipleChannelsNoBroadcast(new[] {1, 2}, ListenPhase.Regular);
-            EventHandler<EventFoo> l12 = (metadata, @event) => { l12Count++; };
+            Listener<EventFoo> l12 = (metadata, @event) => { l12Count++; };
             eb.AddListener(l12Config, l12);
 
             var l12BCount = 0;
             var l12BConfig = ListenerConfig.MultipleChannelsAndBroadcast(new[] {1, 2}, ListenPhase.Regular);
-            EventHandler<EventFoo> l12B = (metadata, @event) => { l12BCount++; };
+            Listener<EventFoo> l12B = (metadata, @event) => { l12BCount++; };
             eb.AddListener(l12BConfig, l12B);
 
             var lACount = 0;
             var lAConfig = ListenerConfig.AllChannelsNoBroadcast(ListenPhase.Regular);
-            EventHandler<EventFoo> lA = (metadata, @event) => { lACount++; };
+            Listener<EventFoo> lA = (metadata, @event) => { lACount++; };
             eb.AddListener(lAConfig, lA);
 
             var lABCount = 0;
             var lABConfig = ListenerConfig.AllChannelsAndBroadcast(ListenPhase.Regular);
-            EventHandler<EventFoo> lAB = (metadata, @event) => { lABCount++; };
+            Listener<EventFoo> lAB = (metadata, @event) => { lABCount++; };
             eb.AddListener(lABConfig, lAB);
 
             var lBCount = 0;
             var lBConfig = ListenerConfig.BroadcastOnly(ListenPhase.Regular);
-            EventHandler<EventFoo> lB = (metadata, @event) => { lBCount++; };
+            Listener<EventFoo> lB = (metadata, @event) => { lBCount++; };
             eb.AddListener(lBConfig, lB);
 
             // E0
