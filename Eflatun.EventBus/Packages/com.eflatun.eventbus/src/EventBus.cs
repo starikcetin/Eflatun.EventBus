@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Eflatun.EventBus.Internal;
 
 namespace Eflatun.EventBus
 {
@@ -57,22 +58,25 @@ namespace Eflatun.EventBus
 
             if (_listenerConfigs.ContainsKey(hashCachedListener))
             {
-                throw new EventBusException($"{nameof(EventBus<TEvent>)}.{nameof(AddListener)}: Listener is already registered. Reusing listeners is not supported. Config: {config}");
+                throw new EventBusException("Listener is already registered. Reusing listeners is not supported.");
             }
 
             _listenerConfigs[hashCachedListener] = config;
             _phaseContexts[config.Phase].AddListener(config, hashCachedListener);
         }
 
-        public void RemoveListener(Listener<TEvent> listener)
+        public bool RemoveListener(Listener<TEvent> listener)
         {
             var hashCachedListener = new HashCachedListener<TEvent>(listener);
 
-            if (_listenerConfigs.TryGetValue(hashCachedListener, out var config))
+            if (!_listenerConfigs.TryGetValue(hashCachedListener, out var config))
             {
-                _listenerConfigs.Remove(hashCachedListener);
-                _phaseContexts[config.Phase].RemoveListener(config, hashCachedListener);
+                return false;
             }
+
+            _listenerConfigs.Remove(hashCachedListener);
+            _phaseContexts[config.Phase].RemoveListener(config, hashCachedListener);
+            return true;
         }
     }
 }

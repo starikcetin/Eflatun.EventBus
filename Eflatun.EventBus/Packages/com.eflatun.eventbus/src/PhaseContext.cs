@@ -7,10 +7,8 @@ namespace Eflatun.EventBus
     internal class PhaseContext<TEvent> where TEvent : IEvent
     {
         private readonly HashSetList<HashCachedListener<TEvent>> _combineSet = new HashSetList<HashCachedListener<TEvent>>();
-
         private readonly HashSetList<HashCachedListener<TEvent>> _broadcastListeners = new HashSetList<HashCachedListener<TEvent>>();
         private readonly HashSetList<HashCachedListener<TEvent>> _allChannelsListeners = new HashSetList<HashCachedListener<TEvent>>();
-
         private readonly Dictionary<int, HashSetList<HashCachedListener<TEvent>>> _channelListeners =
             new Dictionary<int, HashSetList<HashCachedListener<TEvent>>>();
 

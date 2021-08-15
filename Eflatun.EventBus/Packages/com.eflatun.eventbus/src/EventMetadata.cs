@@ -12,8 +12,8 @@ namespace Eflatun.EventBus
         public EventMetadata(ReadOnlySpan<int> channels, object sender, bool isBroadcast)
         {
             Sender = sender;
-            IsBroadcast = isBroadcast;
             Channels = channels;
+            IsBroadcast = isBroadcast;
         }
     }
 }

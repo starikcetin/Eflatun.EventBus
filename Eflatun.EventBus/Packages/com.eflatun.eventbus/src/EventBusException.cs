@@ -4,15 +4,15 @@ namespace Eflatun.EventBus
 {
     public class EventBusException : Exception
     {
-        public EventBusException()
+        internal EventBusException()
         {
         }
 
-        public EventBusException(string message) : base(message)
+        internal EventBusException(string message) : base(message)
         {
         }
 
-        public EventBusException(string message, Exception inner) : base(message, inner)
+        internal EventBusException(string message, Exception inner) : base(message, inner)
         {
         }
     }

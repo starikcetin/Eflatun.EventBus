@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eflatun.EventBus
+namespace Eflatun.EventBus.Internal
 {
     internal readonly struct HashCachedListener<TEvent> : IEquatable<HashCachedListener<TEvent>> where TEvent : IEvent
     {
