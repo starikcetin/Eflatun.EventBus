@@ -27,7 +27,7 @@ namespace Eflatun.EventBus.Dev.Samples.StressSample.Listeners
 
         private void OnApplicationQuit()
         {
-            Debug.Log($"{nameof(L0)}\t->\t{_called}");
+            Debug.Log($"{name}\t{nameof(L0)}\t->\t{_called}");
         }
 
         private void OnEventA(EventMetadata metadata, EventFoo @event)

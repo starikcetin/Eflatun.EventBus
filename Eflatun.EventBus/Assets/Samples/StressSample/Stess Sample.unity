@@ -2779,7 +2779,7 @@ GameObject:
   - component: {fileID: 1264432300}
   - component: {fileID: 1264432299}
   m_Layer: 0
-  m_Name: Listeners
+  m_Name: Listeners (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4755,7 +4755,7 @@ GameObject:
   - component: {fileID: 2141086872}
   - component: {fileID: 2141086871}
   m_Layer: 0
-  m_Name: Emitters
+  m_Name: Emitters (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
