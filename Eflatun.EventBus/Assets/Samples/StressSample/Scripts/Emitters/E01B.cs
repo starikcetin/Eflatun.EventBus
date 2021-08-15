@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Eflatun.EventBus.Dev.Samples.StressSample.Scripts.Emitters
+namespace Eflatun.EventBus.Dev.Samples.StressSample.Emitters
 {
     public class E01B : MonoBehaviour
     {

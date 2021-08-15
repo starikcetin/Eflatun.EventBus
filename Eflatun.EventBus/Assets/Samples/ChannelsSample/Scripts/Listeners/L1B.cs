@@ -6,23 +6,22 @@ namespace Eflatun.EventBus.Dev.Samples.ChannelsSample
     public class L1B : MonoBehaviour
     {
         private EventBus<EventFoo> _eventBus;
-        private ListenerConfig _listenerConfig;
 
         [Inject]
         private void _Init(EventBus<EventFoo> eventBus)
         {
-            _listenerConfig = ListenerConfig.SingleChannelAndBroadcast(1, ListenPhase.Regular);
             _eventBus = eventBus;
         }
 
         private void OnEnable()
         {
-            _eventBus.AddListener(_listenerConfig, OnEventA);
+            var listenerConfig = ListenerConfig.SingleChannelAndBroadcast(1, ListenPhase.Regular);
+            _eventBus.AddListener(listenerConfig, OnEventA);
         }
 
         private void OnDisable()
         {
-            _eventBus.RemoveListener(_listenerConfig, OnEventA);
+            _eventBus.RemoveListener(OnEventA);
         }
 
         private void OnEventA(EventMetadata metadata, EventFoo @event)

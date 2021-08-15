@@ -29,7 +29,7 @@ namespace Eflatun.EventBus.Dev.Tests.Utils
 
         public void RemoveFromEventBus()
         {
-            _eb.RemoveListener(_config, _listener);
+            _eb.RemoveListener(_listener);
             _isInEventBus = false;
         }
 

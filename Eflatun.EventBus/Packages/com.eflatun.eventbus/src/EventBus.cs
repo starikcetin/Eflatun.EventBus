@@ -5,6 +5,9 @@ namespace Eflatun.EventBus
 {
     public class EventBus<TEvent> where TEvent : IEvent
     {
+        private readonly Dictionary<HashCachedListener<TEvent>, ListenerConfig> _listenerConfigs =
+            new Dictionary<HashCachedListener<TEvent>, ListenerConfig>();
+
         private readonly Dictionary<ListenPhase, PhaseContext<TEvent>> _phaseContexts =
             new Dictionary<ListenPhase, PhaseContext<TEvent>>
             {
@@ -50,12 +53,26 @@ namespace Eflatun.EventBus
 
         public void AddListener(ListenerConfig config, Listener<TEvent> listener)
         {
-            _phaseContexts[config.Phase].AddListener(config, new HashCachedListener<TEvent>(listener));
+            var hashCachedListener = new HashCachedListener<TEvent>(listener);
+
+            if (_listenerConfigs.ContainsKey(hashCachedListener))
+            {
+                throw new EventBusException($"{nameof(EventBus<TEvent>)}.{nameof(AddListener)}: Listener is already registered. Reusing listeners is not supported. Config: {config}");
+            }
+
+            _listenerConfigs[hashCachedListener] = config;
+            _phaseContexts[config.Phase].AddListener(config, hashCachedListener);
         }
 
-        public void RemoveListener(ListenerConfig config, Listener<TEvent> listener)
+        public void RemoveListener(Listener<TEvent> listener)
         {
-            _phaseContexts[config.Phase].RemoveListener(config, new HashCachedListener<TEvent>(listener));
+            var hashCachedListener = new HashCachedListener<TEvent>(listener);
+
+            if (_listenerConfigs.TryGetValue(hashCachedListener, out var config))
+            {
+                _listenerConfigs.Remove(hashCachedListener);
+                _phaseContexts[config.Phase].RemoveListener(config, hashCachedListener);
+            }
         }
     }
 }
