@@ -1,12 +1,23 @@
 {
-	"author": "starikcetin <cetinsamedtarik@gmail.com> (https://github.com/starikcetin)",
-	"description": "Generic EventBus for Unity with Extenject.",
-	"displayName": "Eflatun.EventBus",
-	"license": "MIT",
 	"name": "com.eflatun.eventbus",
 	"version": "0.2.1",
-	"type": "library",
+	"displayName": "Eflatun.EventBus",
+	"description": "Generic Event Bus for Unity.\nhttps://github.com/starikcetin/Eflatun.EventBus",
+	"documentationUrl": "https://github.com/starikcetin/Eflatun.EventBus/blob/main/README.md",
+	"changelogUrl": "https://github.com/starikcetin/Eflatun.EventBus/blob/main/CHANGELOG.md",
+	"licensesUrl": "https://github.com/starikcetin/Eflatun.EventBus/blob/main/LICENSE.md",
+	"keywords": [
+		"eflatun",
+		"event",
+		"bus",
+		"eventbus",
+		"starikcetin"
+	],
+	"author": {
+		"name": "starikcetin",
+		"email": "cetinsamedtarik@gmail.com",
+		"url": "https://github.com/starikcetin"
+	},
 	"dependencies": {
-		"com.svermeulen.extenject": "9.1.0"
 	}
 }
