@@ -1,0 +1,263 @@
+2024-09-16T13:51:35.519Z|0x3e3c|Using pre-set license
+2024-09-16T13:51:35.519Z|0x3e3c|Built from '2022.3/staging' branch; Version is '2022.3.46f1 (8e9b8558c41a) revision 9345925'; Using compiler version '192829333'; Build Type 'Release'
+2024-09-16T13:51:35.525Z|0x3e3c|OS: 'Windows 10  (10.0.19045) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 16267 MB
+2024-09-16T13:51:35.525Z|0x3e3c|BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+2024-09-16T13:51:35.546Z|0x3e3c|
+COMMAND LINE ARGUMENTS:
+2024-09-16T13:51:35.546Z|0x3e3c|C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe
+2024-09-16T13:51:35.546Z|0x3e3c|-adb2
+2024-09-16T13:51:35.546Z|0x3e3c|-batchMode
+2024-09-16T13:51:35.546Z|0x3e3c|-noUpm
+2024-09-16T13:51:35.546Z|0x3e3c|-name
+2024-09-16T13:51:35.546Z|0x3e3c|AssetImportWorker0
+2024-09-16T13:51:35.546Z|0x3e3c|-projectPath
+2024-09-16T13:51:35.546Z|0x3e3c|D:/Projects/GameDev/Tools/EflatunLibraries/Eflatun.EventBus/Eflatun.EventBus
+2024-09-16T13:51:35.546Z|0x3e3c|-logFile
+2024-09-16T13:51:35.546Z|0x3e3c|Logs/AssetImportWorker0.log
+2024-09-16T13:51:35.546Z|0x3e3c|-srvPort
+2024-09-16T13:51:35.546Z|0x3e3c|50894
+2024-09-16T13:51:35.547Z|0x3e3c|Successfully changed project path to: D:/Projects/GameDev/Tools/EflatunLibraries/Eflatun.EventBus/Eflatun.EventBus
+2024-09-16T13:51:35.633Z|0x3e3c|D:/Projects/GameDev/Tools/EflatunLibraries/Eflatun.EventBus/Eflatun.EventBus
+2024-09-16T13:51:35.633Z|0x3e3c|[UnityMemory] Configuration Parameters - Can be set up in boot.config
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-bucket-allocator-granularity=16"
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-bucket-allocator-bucket-count=8"
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-bucket-allocator-block-size=33554432"
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-bucket-allocator-block-count=8"
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-main-allocator-block-size=16777216"
+2024-09-16T13:51:35.633Z|0x3e3c|    "memorysetup-thread-allocator-block-size=16777216"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-gfx-main-allocator-block-size=16777216"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-gfx-thread-allocator-block-size=16777216"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-cache-allocator-block-size=4194304"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-typetree-allocator-block-size=2097152"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-bucket-allocator-granularity=16"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-bucket-allocator-block-count=8"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-allocator-block-size=16777216"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-profiler-editor-allocator-block-size=1048576"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-main=16777216"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-job-temp-allocator-block-size=2097152"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-job-temp-allocator-block-size-background=1048576"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-allocator-temp-initial-block-size-main=262144"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-background-worker=32768"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-job-worker=262144"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-preload-manager=33554432"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-audio-worker=65536"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-cloud-worker=32768"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+2024-09-16T13:51:35.634Z|0x3e3c|    "memorysetup-temp-allocator-size-gfx=262144"
+2024-09-16T13:51:35.650Z|0x3e3c|Player connection [15932]  Target information:
+
+2024-09-16T13:51:35.650Z|0x3e3c|Player connection [15932]  * "[IP] 192.168.1.54 [Port] 0 [Flags] 2 [Guid] 635891168 [EditorId] 635891168 [Version] 1048832 [Id] WindowsEditor(7,Biruni) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+2024-09-16T13:51:35.658Z|0x3e3c|Player connection [15932] Host joined multi-casting on [225.0.0.222:54997]...
+2024-09-16T13:51:35.659Z|0x3e3c|Player connection [15932] Host joined alternative multi-casting on [225.0.0.222:34997]...
+2024-09-16T13:51:35.677Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:51:35.902Z|0x3e3c|Refreshing native plugins compatible for Editor in 12.93 ms, found 2 plugins.
+2024-09-16T13:51:35.902Z|0x3e3c|Preloading 0 native plugins for Editor in 0.00 ms.
+2024-09-16T13:51:35.906Z|0x3e3c|Initialize engine version: 2022.3.46f1 (8e9b8558c41a)
+2024-09-16T13:51:35.907Z|0x3e3c|[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Resources/UnitySubsystems
+2024-09-16T13:51:35.907Z|0x3e3c|[Subsystems] Discovering subsystems at path D:/Projects/GameDev/Tools/EflatunLibraries/Eflatun.EventBus/Eflatun.EventBus/Assets
+2024-09-16T13:51:35.908Z|0x3e3c|GfxDevice: creating device client; threaded=0; jobified=0
+2024-09-16T13:51:36.351Z|0x3e3c|Direct3D:
+2024-09-16T13:51:36.351Z|0x3e3c|    Version:  Direct3D 11.0 [level 11.0]
+2024-09-16T13:51:36.351Z|0x3e3c|    Renderer: NVIDIA GeForce GTX 850M (ID=0x1391)
+2024-09-16T13:51:36.351Z|0x3e3c|    Vendor:   NVIDIA
+2024-09-16T13:51:36.351Z|0x3e3c|    VRAM:     4054 MB
+2024-09-16T13:51:36.351Z|0x3e3c|    Driver:   31.0.15.3699
+2024-09-16T13:51:36.467Z|0x3e3c|Initialize mono
+2024-09-16T13:51:36.467Z|0x3e3c|Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/Managed'
+2024-09-16T13:51:36.467Z|0x3e3c|Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+2024-09-16T13:51:36.467Z|0x3e3c|Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/MonoBleedingEdge/etc'
+2024-09-16T13:51:36.467Z|0x3e3c|Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56104
+2024-09-16T13:51:36.595Z|0x3e3c|Begin MonoManager ReloadAssembly
+2024-09-16T13:51:37.085Z|0x3e3c|Registering precompiled unity dll's ...
+2024-09-16T13:51:37.101Z|0x3e3c|Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.46f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+2024-09-16T13:51:37.111Z|0x3e3c|Registered in 0.026459 seconds.
+2024-09-16T13:51:37.583Z|0x3e3c|- Loaded All Assemblies, in  0.989 seconds
+2024-09-16T13:51:37.715Z|0x3e3c|Native extension for WindowsStandalone target not found
+2024-09-16T13:51:38.330Z|0x3e3c|Mono: successfully reloaded assembly
+2024-09-16T13:51:38.378Z|0x3e3c|- Finished resetting the current domain, in  0.794 seconds
+2024-09-16T13:51:38.378Z|0x3e3c|Domain Reload Profiling: 1776ms
+	BeginReloadAssembly (307ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (93ms)
+	RebuildNativeTypeToScriptingClass (33ms)
+	initialDomainReloadingComplete (158ms)
+	LoadAllAssembliesAndSetupDomain (390ms)
+		LoadAssemblies (303ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (387ms)
+			TypeCache.Refresh (385ms)
+				TypeCache.ScanAssembly (343ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (795ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (646ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (32ms)
+			SetLoadedEditorAssemblies (17ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (22ms)
+			ProcessInitializeOnLoadAttributes (411ms)
+			ProcessInitializeOnLoadMethodAttributes (162ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+2024-09-16T13:51:38.630Z|0x3e3c|========================================================================
+2024-09-16T13:51:38.630Z|0x3e3c|Worker process is ready to serve import requests
+2024-09-16T13:51:39.294Z|0x3e3c|Caller must complete domain reload
+2024-09-16T13:51:39.435Z|0x3e3c|Begin MonoManager ReloadAssembly
+2024-09-16T13:51:41.027Z|0x3e3c|- Loaded All Assemblies, in  1.593 seconds
+2024-09-16T13:51:41.344Z|0x3e3c|Native extension for WindowsStandalone target not found
+2024-09-16T13:51:42.516Z|0x3e3c|Package Manager log level set to [2]
+2024-09-16T13:51:42.516Z|0x3e3c|[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+2024-09-16T13:51:42.516Z|0x3e3c|[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+2024-09-16T13:51:42.516Z|0x3e3c|[Package Manager] Cannot connect to Unity Package Manager local server
+2024-09-16T13:51:42.883Z|0x3e3c|Mono: successfully reloaded assembly
+2024-09-16T13:51:42.954Z|0x3e3c|- Finished resetting the current domain, in  1.926 seconds
+2024-09-16T13:51:42.956Z|0x3e3c|Domain Reload Profiling: 3514ms
+	BeginReloadAssembly (398ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (12ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (133ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (103ms)
+	LoadAllAssembliesAndSetupDomain (928ms)
+		LoadAssemblies (737ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (427ms)
+			TypeCache.Refresh (384ms)
+				TypeCache.ScanAssembly (297ms)
+			ScanForSourceGeneratedMonoScriptInfo (32ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (1928ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1538ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (19ms)
+			SetLoadedEditorAssemblies (13ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (197ms)
+			ProcessInitializeOnLoadAttributes (1205ms)
+			ProcessInitializeOnLoadMethodAttributes (83ms)
+			AfterProcessingInitializeOnLoad (21ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (19ms)
+2024-09-16T13:51:43.280Z|0x3e3c|Launched and connected shader compiler UnityShaderCompiler.exe after 0.15 seconds
+2024-09-16T13:51:43.363Z|0x3e3c|Refreshing native plugins compatible for Editor in 5.09 ms, found 2 plugins.
+2024-09-16T13:51:43.363Z|0x3e3c|Preloading 0 native plugins for Editor in 0.00 ms.
+2024-09-16T13:51:43.398Z|0x0758|Unloading 1754 Unused Serialized files (Serialized files now loaded: 0)
+2024-09-16T13:51:43.407Z|0x3e3c|Unloading 23 unused Assets / (56.6 KB). Loaded Objects now: 2217.
+Memory consumption went from 89.3 MB to 89.3 MB.
+2024-09-16T13:51:43.407Z|0x3e3c|Total: 8.985200 ms (FindLiveObjects: 0.218300 ms CreateObjectMapping: 0.096900 ms MarkObjects: 8.158900 ms  DeleteObjects: 0.508100 ms)
+
+2024-09-16T13:51:43.415Z|0x3e3c|AssetImportParameters requested are different than current active one (requested -> active):
+2024-09-16T13:51:43.415Z|0x3e3c|  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+2024-09-16T13:51:43.415Z|0x3e3c|  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+2024-09-16T13:51:43.415Z|0x3e3c|  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+2024-09-16T13:51:43.416Z|0x3e3c|  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+2024-09-16T13:51:43.416Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 55562.621527 seconds.
+  path: Packages/com.eflatun.eventbus/src/IEvent.cs
+  artifactKey: Guid(b297bf4a62b08c641a69f1fc66d8caf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:51:43.417Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src/IEvent.cs using Guid(b297bf4a62b08c641a69f1fc66d8caf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:51:43.420Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:51:43.426Z|0x3e3c| -> (artifact id: '12ef6285f7c91d64a730ca540dc1a9f9') in 0.008885 seconds
+2024-09-16T13:51:43.426Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:51:53.105Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 9.679114 seconds.
+  path: Packages/com.eflatun.eventbus/src/IEventArguments.cs
+  artifactKey: Guid(12b4d7f74b73cb64184e837b703d2489) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:51:53.106Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src/IEventArguments.cs using Guid(12b4d7f74b73cb64184e837b703d2489) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:51:53.107Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:51:53.108Z|0x3e3c| -> (artifact id: 'c3a1cbfe2af721acde7594ccc94416d6') in 0.001444 seconds
+2024-09-16T13:51:53.108Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:51:58.541Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 5.432422 seconds.
+  path: Packages/com.eflatun.eventbus/src/EventHandler.cs
+  artifactKey: Guid(9aa8f95e08d54d4e895d94410832f53e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:51:58.541Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src/EventHandler.cs using Guid(9aa8f95e08d54d4e895d94410832f53e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:51:58.541Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:51:58.542Z|0x3e3c| -> (artifact id: '26d08b961038fa4d723072479b94fa9a') in 0.001053 seconds
+2024-09-16T13:51:58.542Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:52:02.047Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 3.505189 seconds.
+  path: Packages/com.eflatun.eventbus/src/EventBus.cs
+  artifactKey: Guid(c186839ee3414ed3bb4030549e55eaa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:02.047Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src/EventBus.cs using Guid(c186839ee3414ed3bb4030549e55eaa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:02.048Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:02.048Z|0x3e3c| -> (artifact id: '807ab5aba9782de5d9d44c598b2671ac') in 0.000923 seconds
+2024-09-16T13:52:02.049Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:52:08.265Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 6.215876 seconds.
+  path: Packages/com.eflatun.eventbus/src/utils/Utils.cs
+  artifactKey: Guid(5e720d048ade2994fab97c01569e36e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:08.265Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src/utils/Utils.cs using Guid(5e720d048ade2994fab97c01569e36e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:08.265Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:08.266Z|0x3e3c| -> (artifact id: 'e6e1dd7ac689b00dcd3d51890b9c6fec') in 0.000734 seconds
+2024-09-16T13:52:08.266Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:52:19.445Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 11.179827 seconds.
+  path: Packages/com.eflatun.eventbus/src
+  artifactKey: Guid(35a6378fcb68743418610bb0fe1a1c29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:19.446Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/src using Guid(35a6378fcb68743418610bb0fe1a1c29) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:19.446Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:19.446Z|0x3e3c| -> (artifact id: 'a8e323642f827b812754933921e0a1ee') in 0.000528 seconds
+2024-09-16T13:52:19.446Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:52:21.021Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 1.574238 seconds.
+  path: Packages/com.eflatun.eventbus/EflatunEventBusInstaller.cs
+  artifactKey: Guid(a4a66d7164736574eb83d30b61d91a5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:21.022Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/EflatunEventBusInstaller.cs using Guid(a4a66d7164736574eb83d30b61d91a5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:21.022Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:21.023Z|0x3e3c| -> (artifact id: '973cee38ca71c33801173564f52ec7a7') in 0.001421 seconds
+2024-09-16T13:52:21.023Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+2024-09-16T13:52:21.528Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 0.504453 seconds.
+  path: Packages/com.eflatun.eventbus/package.json
+  artifactKey: Guid(4f30f05e6f3dab94c9885cf9d35a29aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:21.528Z|0x3e3c|Start importing Packages/com.eflatun.eventbus/package.json using Guid(4f30f05e6f3dab94c9885cf9d35a29aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:21.528Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:21.549Z|0x3e3c| -> (artifact id: 'e5d2ba20a1e653714a5d5712e0eff290') in 0.020656 seconds
+2024-09-16T13:52:21.549Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+2024-09-16T13:52:25.566Z|0x3e3c|========================================================================
+Received Import Request.
+  Time since last request: 4.016482 seconds.
+  path: Packages/com.eflatun.eventbus
+  artifactKey: Guid(6084be6035488c34c3f3d14624f31f4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+2024-09-16T13:52:25.566Z|0x3e3c|Start importing Packages/com.eflatun.eventbus using Guid(6084be6035488c34c3f3d14624f31f4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) 2024-09-16T13:52:25.566Z|0x3e3c|[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+2024-09-16T13:52:25.566Z|0x3e3c| -> (artifact id: '10f08bc3546b95a334d9780e7a322414') in 0.000481 seconds
+2024-09-16T13:52:25.567Z|0x3e3c|Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
